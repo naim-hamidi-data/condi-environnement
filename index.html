@@ -1,4 +1,468 @@
-conditionnalite-31/
-├── index.html
-├── style.css
-└── script.js
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Conditionnalité 31 — Diagnostic environnemental</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-mark">31</div>
+
+            <div>
+                <div class="brand-title">CONDITIONNALITÉ</div>
+                <div class="brand-subtitle">Haute-Garonne · 2026</div>
+            </div>
+        </div>
+
+        <div class="header-status">
+            Diagnostic environnemental
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         APPLICATION
+    ========================== -->
+
+    <main class="app">
+
+
+        <!-- =========================
+             ACCUEIL
+        ========================== -->
+
+        <section id="homeScreen" class="screen active">
+
+            <div class="hero">
+
+                <div class="eyebrow">
+                    OUTIL D'AUTODIAGNOSTIC
+                </div>
+
+                <h1>
+                    Vérifiez simplement<br>
+                    vos principaux points<br>
+                    de conditionnalité.
+                </h1>
+
+                <p class="hero-text">
+                    Un outil pour vous aider à identifier les points
+                    environnementaux à vérifier sur votre exploitation
+                    en Haute-Garonne.
+                </p>
+
+                <button class="primary-button" onclick="startDiagnostic()">
+                    Commencer le diagnostic
+                    <span>→</span>
+                </button>
+
+                <p class="small-note">
+                    Environ 5 minutes · Aucun compte nécessaire
+                </p>
+
+            </div>
+
+
+            <!-- DOMAINES -->
+
+            <div class="domains">
+
+                <div class="domain-card">
+
+                    <div class="domain-icon yellow">
+                        N
+                    </div>
+
+                    <div class="domain-content">
+
+                        <div class="domain-title">
+                            Directive Nitrates
+                        </div>
+
+                        <div class="domain-description">
+                            Fertilisation, PPF, cahier d'enregistrement,
+                            analyses de sol, épandage et couverture des sols.
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <div class="domain-card">
+
+                    <div class="domain-icon blue">
+                        E
+                    </div>
+
+                    <div class="domain-content">
+
+                        <div class="domain-title">
+                            Cadre sur l'eau
+                        </div>
+
+                        <div class="domain-description">
+                            Prélèvements, irrigation et prévention des
+                            pollutions lors du remplissage du pulvérisateur.
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+
+                <div class="domain-card">
+
+                    <div class="domain-icon green">
+                        O
+                    </div>
+
+                    <div class="domain-content">
+
+                        <div class="domain-title">
+                            Oiseaux & habitats
+                        </div>
+
+                        <div class="domain-description">
+                            Haies, périodes d'entretien et situations
+                            liées aux sites Natura 2000.
+                        </div>
+
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info-box">
+
+                <div class="info-icon">
+                    i
+                </div>
+
+                <div>
+                    <strong>À quoi sert ce diagnostic ?</strong>
+
+                    <p>
+                        Cet outil vous aide à identifier les points
+                        qui méritent une vérification. Il ne constitue
+                        pas une attestation de conformité réglementaire.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             DIAGNOSTIC
+        ========================== -->
+
+        <section id="diagnosticScreen" class="screen">
+
+            <div class="diagnostic-header">
+
+                <button class="back-button" onclick="goHome()">
+                    ←
+                </button>
+
+                <div>
+
+                    <div class="section-label" id="sectionLabel">
+                        NITRATES
+                    </div>
+
+                    <div class="question-counter">
+                        <span id="questionNumber">1</span>
+                        /
+                        <span id="questionTotal">1</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESSION -->
+
+            <div class="progress-container">
+
+                <div class="progress-bar">
+                    <div id="progressBar"></div>
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION -->
+
+            <div class="question-card">
+
+                <div id="questionCategory" class="question-category">
+                    DOCUMENTS & PRATIQUES
+                </div>
+
+                <h2 id="questionTitle">
+                    Plan prévisionnel de fumure
+                </h2>
+
+                <p id="questionText">
+                    Votre PPF est-il réalisé selon une méthode de calcul
+                    conforme à la méthode COMIFER ?
+                </p>
+
+
+                <div id="answers" class="answers">
+
+                    <!-- généré par JavaScript -->
+
+                </div>
+
+
+                <div id="questionHelp" class="question-help">
+
+                    <div class="help-icon">
+                        ?
+                    </div>
+
+                    <div>
+                        <strong>Besoin d'aide ?</strong>
+
+                        <p>
+                            Vous pourrez retrouver les informations
+                            réglementaires détaillées dans les ressources
+                            officielles.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESULTATS
+        ========================== -->
+
+        <section id="resultScreen" class="screen">
+
+            <div class="result-header">
+
+                <div class="eyebrow">
+                    DIAGNOSTIC TERMINÉ
+                </div>
+
+                <h1>
+                    Votre diagnostic
+                </h1>
+
+                <p>
+                    Voici les principaux points identifiés
+                    à partir de vos réponses.
+                </p>
+
+            </div>
+
+
+            <!-- STATISTIQUES -->
+
+            <div class="result-stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-number green-text" id="greenCount">
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Vérifiés
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-number orange-text" id="orangeCount">
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        À vérifier
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-number red-text" id="redCount">
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Actions
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONCLUSION -->
+
+            <div class="conclusion-card">
+
+                <div class="conclusion-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3 id="conclusionTitle">
+                        Votre diagnostic a identifié 0 point à vérifier.
+                    </h3>
+
+                    <p id="conclusionText">
+                        Consultez le détail ci-dessous.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- LISTE -->
+
+            <div class="results-section">
+
+                <div class="results-title">
+                    Points à vérifier
+                </div>
+
+                <div id="resultsList">
+
+                    <!-- généré par JavaScript -->
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION -->
+
+            <button class="primary-button" onclick="showActions()">
+                Voir ce que je dois faire
+                <span>→</span>
+            </button>
+
+            <button class="secondary-button" onclick="restartDiagnostic()">
+                Refaire le diagnostic
+            </button>
+
+        </section>
+
+
+
+        <!-- =========================
+             ACTIONS
+        ========================== -->
+
+        <section id="actionsScreen" class="screen">
+
+            <div class="result-header">
+
+                <div class="eyebrow">
+                    VOTRE FEUILLE DE ROUTE
+                </div>
+
+                <h1>
+                    Que dois-je faire ?
+                </h1>
+
+                <p>
+                    Retrouvez ici les points à vérifier
+                    avant votre prochaine campagne.
+                </p>
+
+            </div>
+
+
+            <div id="actionsList" class="actions-list">
+
+                <!-- généré par JavaScript -->
+
+            </div>
+
+
+            <button class="secondary-button" onclick="showResults()">
+                ← Retour aux résultats
+            </button>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         NAVIGATION MOBILE
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+        <button onclick="goHome()">
+            <span>⌂</span>
+            Accueil
+        </button>
+
+        <button onclick="startDiagnostic()">
+            <span>✓</span>
+            Diagnostic
+        </button>
+
+        <button onclick="showResults()">
+            <span>◎</span>
+            Résultats
+        </button>
+
+    </nav>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

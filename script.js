@@ -562,3 +562,110 @@ function restartDiagnostic() {
     startDiagnostic();
 
 }
+
+function generatePDF() {
+
+    const { jsPDF } = window.jspdf;
+
+    const operatorName =
+        document.getElementById("operatorName")?.value.trim()
+        || "Non renseigné";
+
+    const farmName =
+        document.getElementById("farmName")?.value.trim()
+        || "Non renseignée";
+
+    const today = new Date();
+
+    const date = today.toLocaleDateString("fr-FR");
+
+    const doc = new jsPDF();
+
+    let y = 20;
+
+    // TITRE
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(22);
+    doc.text("CONDITIONNALITÉ 31", 15, y);
+
+    y += 10;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text(
+        "Diagnostic environnemental · Haute-Garonne · 2026",
+        15,
+        y
+    );
+
+    y += 15;
+
+    // INFORMATIONS
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Informations du diagnostic", 15, y);
+
+    y += 10;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+
+    doc.text(`Exploitant : ${operatorName}`, 15, y);
+    y += 7;
+
+    doc.text(`Exploitation : ${farmName}`, 15, y);
+    y += 7;
+
+    doc.text(`Date : ${date}`, 15, y);
+
+    y += 15;
+
+    // RÉSULTAT
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Résultat du diagnostic", 15, y);
+
+    y += 10;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+
+    const resultText =
+        document.querySelector("#resultsSummary")?.innerText
+        || "Résultats du diagnostic disponibles sur l'écran précédent.";
+
+    const lines = doc.splitTextToSize(
+        resultText,
+        180
+    );
+
+    doc.text(lines, 15, y);
+
+    y += lines.length * 6 + 15;
+
+    // AVERTISSEMENT
+    doc.setFont("helvetica", "bold");
+    doc.text("Important", 15, y);
+
+    y += 8;
+
+    doc.setFont("helvetica", "normal");
+
+    const warning =
+        "Ce document constitue une trace de votre autodiagnostic. " +
+        "Il ne constitue pas une attestation de conformité réglementaire " +
+        "et ne remplace pas les textes officiels ou un contrôle administratif.";
+
+    const warningLines = doc.splitTextToSize(
+        warning,
+        180
+    );
+
+    doc.text(warningLines, 15, y);
+
+    // TÉLÉCHARGEMENT
+    const fileName =
+        `Diagnostic_Conditionnalite_31_${operatorName.replace(/\s+/g, "_")}.pdf`;
+
+    doc.save(fileName);
+}

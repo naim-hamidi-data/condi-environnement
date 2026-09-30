@@ -1,427 +1,102 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Conditionnalité 31 — Diagnostic environnemental 2026</title>
+    <title>Contrôle conditionnalité PAC – volet Environnement</title>
 
     <meta
         name="description"
-        content="Outil d'autodiagnostic de la conditionnalité environnementale en Haute-Garonne."
+        content="Autodiagnostic du contrôle conditionnalité PAC – volet Environnement en Haute-Garonne."
     >
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- jsPDF -->
+    <!-- jsPDF pour la génération du PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
 
-<header class="topbar">
-    <div class="topbar-inner">
-        <div class="brand">
-            <span class="brand-main">CONDITIONNALITÉ 31</span>
-            <span class="brand-sub">Haute-Garonne · 2026</span>
-        </div>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="topbar">
 
-        <div class="topbar-label">
-            Diagnostic environnemental
-        </div>
-    </div>
-</header>
+        <div class="topbar-inner">
 
+            <div class="brand">
 
-<main>
+                <div class="brand-main">
+                    CONDITIONNALITÉ PAC
+                </div>
 
-    <!-- =========================================================
-         ACCUEIL
-    ========================================================== -->
+                <div class="brand-sub">
+                    Haute-Garonne · 2026
+                </div>
 
-    <section id="homeScreen" class="screen active">
-
-        <div class="hero">
-
-            <div class="hero-kicker">
-                CONDITIONNALITÉ ENVIRONNEMENTALE
             </div>
 
-            <h1>
-                Faites le point sur<br>
-                votre exploitation.
-            </h1>
-
-            <p class="hero-text">
-                Un autodiagnostic simple pour identifier les points
-                environnementaux qui méritent une vérification avant un contrôle.
-            </p>
-
-            <button class="primary-button" onclick="startDiagnostic()">
-                Commencer le diagnostic
-                <span>→</span>
-            </button>
-
-            <p class="hero-note">
-                Environ 5 à 10 minutes · 22 points maximum
-            </p>
-
-        </div>
-
-
-        <div class="intro-grid">
-
-            <div class="intro-card">
-                <div class="intro-number">01</div>
-                <h3>Répondez</h3>
-                <p>
-                    Parcourez les différents points de contrôle
-                    applicables à votre exploitation.
-                </p>
-            </div>
-
-            <div class="intro-card">
-                <div class="intro-number">02</div>
-                <h3>Identifiez</h3>
-                <p>
-                    Repérez les réponses nécessitant une vérification
-                    ou une action.
-                </p>
-            </div>
-
-            <div class="intro-card">
-                <div class="intro-number">03</div>
-                <h3>Conservez</h3>
-                <p>
-                    Générez un PDF récapitulatif directement depuis
-                    votre navigateur.
-                </p>
+            <div class="header-title">
+                Volet Environnement
             </div>
 
         </div>
 
+    </header>
 
-        <div class="domains-section">
 
-            <div class="section-kicker">
-                LES DOMAINES
-            </div>
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+    <main class="app-container">
 
-            <div class="domain-grid">
 
-                <div class="domain-card water-card">
-                    <div class="domain-number">01</div>
-                    <div>
-                        <span class="domain-small">DIRECTIVE</span>
-                        <h3>Cadre sur l'eau</h3>
-                        <p>Questions 1 à 9</p>
-                    </div>
-                </div>
+        <!-- =================================================
+             ÉCRAN D'ACCUEIL
+        ================================================== -->
+        <section id="homeScreen" class="screen active">
 
-                <div class="domain-card birds-card">
-                    <div class="domain-number">02</div>
-                    <div>
-                        <span class="domain-small">DIRECTIVE</span>
-                        <h3>Oiseaux & habitats</h3>
-                        <p>Questions 10 à 13</p>
-                    </div>
-                </div>
+            <div class="hero">
 
-                <div class="domain-card nitrates-card">
-                    <div class="domain-number">03</div>
-                    <div>
-                        <span class="domain-small">DIRECTIVE</span>
-                        <h3>Nitrates</h3>
-                        <p>Questions 14 à 22</p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="disclaimer-box">
-
-            <strong>À propos de cet outil</strong>
-
-            <p>
-                Cet outil vous aide à identifier les points qui méritent
-                une vérification. Il ne constitue pas une attestation
-                de conformité réglementaire.
-            </p>
-
-            <p>
-                Votre diagnostic est généré localement dans votre navigateur.
-                Aucune donnée n'est enregistrée sur ce site.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         DIAGNOSTIC
-    ========================================================== -->
-
-    <section id="diagnosticScreen" class="screen">
-
-        <div class="diagnostic-container">
-
-            <div class="diagnostic-top">
-
-                <button
-                    class="back-button"
-                    onclick="goHome()"
-                >
-                    ← Accueil
-                </button>
-
-                <div class="progress-info">
-                    <span id="progressText">Question 1 / 22</span>
-                </div>
-
-            </div>
-
-
-            <div class="progress-track">
-                <div
-                    id="progressBar"
-                    class="progress-bar"
-                    style="width: 0%"
-                ></div>
-            </div>
-
-
-            <div class="question-card">
-
-                <div class="question-meta">
-
-                    <span
-                        id="domainBadge"
-                        class="domain-badge"
-                    >
-                        Directive cadre sur l'eau
-                    </span>
-
-                    <span
-                        id="typeBadge"
-                        class="type-badge"
-                    >
-                        Vérification administrative
-                    </span>
-
-                </div>
-
-
-                <div class="question-number" id="questionNumber">
-                    01
-                </div>
-
-
-                <h2 id="questionTitle">
-                    Prélèvement pour l'irrigation
-                </h2>
-
-
-                <p
-                    id="questionText"
-                    class="question-text"
-                >
-                </p>
-
-
-                <div
-                    id="examplesBlock"
-                    class="examples-block hidden"
-                >
-                    <strong>Exemples</strong>
-                    <p id="examplesText"></p>
-                </div>
-
-
-                <div
-                    id="remarkBlock"
-                    class="remark-block hidden"
-                >
-                    <strong>À noter</strong>
-                    <p id="remarkText"></p>
-                </div>
-
-
-                <button
-                    id="previousQuestionButton"
-                    class="previous-question-button"
-                    onclick="previousQuestion()"
-                >
-                    ← Question précédente
-                </button>
-
-
-                <div class="answers-title">
-                    Votre réponse
-                </div>
-
-
-                <div
-                    id="answersContainer"
-                    class="answers-container"
-                ></div>
-
-
-                <div class="regulation-box">
-
-                    <div class="regulation-content">
-
-                        <strong>Références utiles</strong>
-
-                        <p>
-                            Consultez les fiches correspondant à ce point
-                            de contrôle.
-                        </p>
-
-                    </div>
-
-
-                    <div class="regulation-links">
-
-                        <a
-                            id="regulationLink"
-                            href="#"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            Fiche générale →
-                        </a>
-
-                        <a
-                            id="supplementLink"
-                            class="hidden"
-                            href="#"
-                            target="_blank"
-                            rel="noopener"
-                        >
-                            Fiche mesure associée →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================================
-         RESULTATS
-    ========================================================== -->
-
-    <section id="resultsScreen" class="screen">
-
-        <div class="results-container">
-
-            <div class="results-header">
-
-                <div class="section-kicker">
-                    VOTRE DIAGNOSTIC
+                <div class="eyebrow">
+                    AUTODIAGNOSTIC
                 </div>
 
                 <h1>
-                    Votre tableau de bord
+                    Contrôle conditionnalité PAC
+                    <span>– volet Environnement</span>
                 </h1>
 
-                <p>
-                    Retrouvez ici la synthèse de vos réponses et les points
-                    qui méritent une vérification.
+                <p class="hero-text">
+                    Parcourez les différents points de contrôle
+                    environnementaux afin d'identifier les éléments
+                    à vérifier avant un contrôle.
                 </p>
 
             </div>
 
 
-            <!-- STATISTIQUES -->
+            <!-- =================================================
+                 IDENTIFICATION
+            ================================================== -->
+            <div class="card identification-card">
 
-            <div class="stats-grid">
+                <div class="section-heading">
 
-                <div class="stat-card stat-total">
-                    <span class="stat-label">POINTS ANALYSÉS</span>
-                    <strong id="statTotal">0</strong>
-                </div>
-
-                <div class="stat-card stat-oui">
-                    <span class="stat-label">OUI</span>
-                    <strong id="statOui">0</strong>
-                </div>
-
-                <div class="stat-card stat-verification">
-                    <span class="stat-label">À VÉRIFIER</span>
-                    <strong id="statVerification">0</strong>
-                </div>
-
-                <div class="stat-card stat-non">
-                    <span class="stat-label">NON</span>
-                    <strong id="statNon">0</strong>
-                </div>
-
-                <div class="stat-card stat-non-concerne">
-                    <span class="stat-label">NON CONCERNÉ</span>
-                    <strong id="statNonConcerne">0</strong>
-                </div>
-
-            </div>
-
-
-            <!-- POINTS A VERIFIER -->
-
-            <div class="actions-panel">
-
-                <div class="panel-header">
                     <div>
-                        <span class="section-kicker">LECTURE RAPIDE</span>
-                        <h2>Points à vérifier</h2>
+                        <div class="section-kicker">
+                            ÉTAPE 1
+                        </div>
+
+                        <h2>
+                            Identification
+                        </h2>
                     </div>
+
                 </div>
-
-                <div id="actionsList"></div>
-
-            </div>
-
-
-            <!-- SYNTHESE -->
-
-            <div class="results-panel">
-
-                <div class="panel-header">
-                    <div>
-                        <span class="section-kicker">SYNTHÈSE</span>
-                        <h2>Vos réponses</h2>
-                    </div>
-                </div>
-
-                <div id="resultsList"></div>
-
-            </div>
-
-
-            <!-- IDENTITE PDF -->
-
-            <div class="identity-card">
-
-                <div class="section-kicker">
-                    TRACE ÉCRITE
-                </div>
-
-                <h3>
-                    Identifiez votre diagnostic
-                </h3>
-
-                <p>
-                    Ces informations seront uniquement intégrées au PDF
-                    généré sur votre appareil.
-                </p>
 
 
                 <div class="form-grid">
@@ -435,7 +110,8 @@
                         <input
                             type="text"
                             id="operatorName"
-                            placeholder="Ex. Jean Dupont"
+                            placeholder="Nom et prénom"
+                            autocomplete="name"
                         >
 
                     </div>
@@ -450,71 +126,576 @@
                         <input
                             type="text"
                             id="farmName"
-                            placeholder="Ex. EARL des Coteaux"
+                            placeholder="Nom de l'exploitation"
                         >
 
                     </div>
 
                 </div>
 
+            </div>
+
+
+            <!-- =================================================
+                 ORIENTATION
+            ================================================== -->
+            <div class="orientation-section">
+
+                <div class="section-heading orientation-heading">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            ÉTAPE 2
+                        </div>
+
+                        <h2>
+                            Orientation
+                        </h2>
+
+                        <p>
+                            Sélectionnez le volet environnemental
+                            que vous souhaitez parcourir.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     CARTES DES DIRECTIVES
+                ================================================== -->
+                <div class="domain-grid">
+
+
+                    <!-- EAU -->
+                    <button
+                        type="button"
+                        class="domain-card"
+                        onclick="startDiagnostic('eau')"
+                    >
+
+                        <div class="domain-icon">
+                            💧
+                        </div>
+
+                        <div class="domain-content">
+
+                            <div class="domain-label">
+                                Directive-cadre sur l'eau
+                            </div>
+
+                            <div class="domain-description">
+                                Protection des ressources en eau,
+                                irrigation et obligations associées.
+                            </div>
+
+                        </div>
+
+                        <div class="domain-arrow">
+                            →
+                        </div>
+
+                    </button>
+
+
+                    <!-- OISEAUX / HABITATS -->
+                    <button
+                        type="button"
+                        class="domain-card"
+                        onclick="startDiagnostic('oiseaux')"
+                    >
+
+                        <div class="domain-icon">
+                            🐦
+                        </div>
+
+                        <div class="domain-content">
+
+                            <div class="domain-label">
+                                Directive oiseaux sauvages et habitats
+                            </div>
+
+                            <div class="domain-description">
+                                Protection des oiseaux sauvages,
+                                des habitats et des éléments concernés.
+                            </div>
+
+                        </div>
+
+                        <div class="domain-arrow">
+                            →
+                        </div>
+
+                    </button>
+
+
+                    <!-- NITRATES -->
+                    <button
+                        type="button"
+                        class="domain-card"
+                        onclick="startDiagnostic('nitrates')"
+                    >
+
+                        <div class="domain-icon">
+                            🌱
+                        </div>
+
+                        <div class="domain-content">
+
+                            <div class="domain-label">
+                                Directive nitrates
+                            </div>
+
+                            <div class="domain-description">
+                                Fertilisation azotée, zones vulnérables,
+                                stockage et pratiques d'épandage.
+                            </div>
+
+                        </div>
+
+                        <div class="domain-arrow">
+                            →
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INFORMATION
+            ================================================== -->
+            <div class="information-card">
+
+                <div class="information-icon">
+                    i
+                </div>
+
+                <div>
+
+                    <strong>
+                        À propos de cet autodiagnostic
+                    </strong>
+
+                    <p>
+                        Cet outil permet d'identifier les points
+                        nécessitant une vérification. Il constitue
+                        une aide à la préparation et ne constitue
+                        pas une attestation de conformité.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ÉCRAN DIAGNOSTIC
+        ====================================================== -->
+        <section
+            id="diagnosticScreen"
+            class="screen"
+        >
+
+            <!-- =================================================
+                 BARRE DE PROGRESSION
+            ================================================== -->
+            <div class="diagnostic-top">
 
                 <button
-                    class="primary-button pdf-button"
-                    onclick="generatePDF()"
+                    type="button"
+                    class="back-button"
+                    onclick="goHome()"
                 >
-                    Télécharger mon diagnostic PDF
-                    <span>↓</span>
+                    ←
+                    <span>Retour</span>
                 </button>
 
 
-                <p class="privacy-note">
-                    Votre diagnostic est généré localement dans votre navigateur.
-                    Aucune donnée n'est enregistrée sur ce site.
+                <div class="progress-area">
+
+                    <div class="progress-label">
+
+                        <span id="progressText">
+                            Question 1
+                        </span>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressBar"
+                            class="progress-bar"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 QUESTION
+            ================================================== -->
+            <div class="question-card">
+
+                <div class="question-meta">
+
+                    <span
+                        id="domainBadge"
+                        class="badge domain-badge"
+                    >
+                        💧 Directive cadre sur l'eau
+                    </span>
+
+                    <span
+                        id="typeBadge"
+                        class="badge type-badge"
+                    >
+                    </span>
+
+                </div>
+
+
+                <div class="question-number">
+
+                    <span>
+                        POINT DE CONTRÔLE
+                    </span>
+
+                    <strong id="questionNumber">
+                        01
+                    </strong>
+
+                </div>
+
+
+                <h1 id="questionTitle">
+                    Point de contrôle
+                </h1>
+
+
+                <div
+                    id="questionText"
+                    class="question-text"
+                >
+                </div>
+
+
+                <!-- =================================================
+                     EXEMPLES
+                ================================================== -->
+                <div
+                    id="examplesBlock"
+                    class="question-info examples-block"
+                    style="display:none;"
+                >
+
+                    <div class="info-title">
+                        Exemples
+                    </div>
+
+                    <div id="examplesText">
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     REMARQUE
+                ================================================== -->
+                <div
+                    id="remarkBlock"
+                    class="question-info remark-block"
+                    style="display:none;"
+                >
+
+                    <div class="info-title">
+                        À retenir
+                    </div>
+
+                    <div id="remarkText">
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     RÉPONSES
+                ================================================== -->
+                <div
+                    id="answersContainer"
+                    class="answers-container"
+                >
+                </div>
+
+
+                <!-- =================================================
+                     LIENS RÉGLEMENTAIRES
+                ================================================== -->
+                <div class="regulation-links">
+
+                    <a
+                        id="regulationLink"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="display:none;"
+                    >
+                        Consulter la référence réglementaire
+                    </a>
+
+                    <a
+                        id="supplementLink"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style="display:none;"
+                    >
+                        Consulter la fiche complémentaire
+                    </a>
+
+                </div>
+
+
+                <!-- =================================================
+                     NAVIGATION
+                ================================================== -->
+                <div class="question-navigation">
+
+                    <button
+                        type="button"
+                        id="previousQuestionButton"
+                        class="secondary-button"
+                    >
+                        ← Question précédente
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ÉCRAN RÉSULTATS
+        ====================================================== -->
+        <section
+            id="resultsScreen"
+            class="screen"
+        >
+
+            <div class="results-header">
+
+                <div class="eyebrow">
+                    AUTODIAGNOSTIC TERMINÉ
+                </div>
+
+                <h1>
+                    Tableau de bord
+                </h1>
+
+                <p>
+                    Retrouvez ici la synthèse des réponses
+                    apportées au questionnaire.
                 </p>
 
             </div>
 
 
-            <button
-                class="secondary-button"
-                onclick="displayActionsScreen()"
-            >
-                Voir les points à vérifier
-            </button>
+            <!-- =================================================
+                 STATISTIQUES
+            ================================================== -->
+            <div class="stats-grid">
 
 
-            <button
-                class="restart-button"
-                onclick="restartDiagnostic()"
-            >
-                Recommencer le diagnostic
-            </button>
+                <div class="stat-card">
 
-        </div>
+                    <div class="stat-value">
+                        <span id="statTotal">
+                            0
+                        </span>
+                    </div>
 
-    </section>
+                    <div class="stat-label">
+                        Points de contrôle
+                    </div>
+
+                </div>
 
 
-    <!-- =========================================================
-         ACTIONS
-    ========================================================== -->
+                <div class="stat-card stat-positive">
 
-    <section id="actionsScreen" class="screen">
+                    <div class="stat-value">
+                        <span id="statOui">
+                            0
+                        </span>
+                    </div>
 
-        <div class="actions-container">
+                    <div class="stat-label">
+                        Oui
+                    </div>
 
-            <button
-                class="back-button"
-                onclick="showResults()"
-            >
-                ← Retour aux résultats
-            </button>
+                </div>
 
+
+                <div class="stat-card stat-warning">
+
+                    <div class="stat-value">
+                        <span id="statVerification">
+                            0
+                        </span>
+                    </div>
+
+                    <div class="stat-label">
+                        À vérifier
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card stat-negative">
+
+                    <div class="stat-value">
+                        <span id="statNon">
+                            0
+                        </span>
+                    </div>
+
+                    <div class="stat-label">
+                        Non
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card stat-neutral">
+
+                    <div class="stat-value">
+                        <span id="statNonConcerne">
+                            0
+                        </span>
+                    </div>
+
+                    <div class="stat-label">
+                        Non concerné
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SYNTHÈSE DES RÉPONSES
+            ================================================== -->
+            <div class="card results-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            SYNTHÈSE
+                        </div>
+
+                        <h2>
+                            Synthèse des réponses
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="resultsList"
+                    class="results-list"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+            <div class="card actions-card">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <div class="section-kicker">
+                            VÉRIFICATION
+                        </div>
+
+                        <h2>
+                            Points à vérifier
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="actionsList"
+                    class="actions-list"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTIONS PRINCIPALES
+            ================================================== -->
+            <div class="results-actions">
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    onclick="generatePDF()"
+                >
+                    Générer le PDF
+                </button>
+
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="restartDiagnostic()"
+                >
+                    Recommencer
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ÉCRAN ACTIONS / PDF
+        ====================================================== -->
+        <section
+            id="actionsScreen"
+            class="screen"
+        >
 
             <div class="results-header">
 
-                <div class="section-kicker">
-                    À FAIRE
+                <div class="eyebrow">
+                    PRÉPARATION DU CONTRÔLE
                 </div>
 
                 <h1>
@@ -522,36 +703,70 @@
                 </h1>
 
                 <p>
-                    Cette page reprend uniquement les réponses
-                    « Non » et « Je dois vérifier ».
+                    Cette synthèse regroupe les éléments identifiés
+                    comme nécessitant une attention particulière.
                 </p>
 
             </div>
 
 
-            <div id="fullActionsList"></div>
+            <div class="card">
 
+                <div
+                    id="fullActionsList"
+                    class="actions-list"
+                >
+                </div>
+
+            </div>
+
+
+            <div class="results-actions">
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    onclick="generatePDF()"
+                >
+                    Générer le PDF
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="showResults()"
+                >
+                    Retour au tableau de bord
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="site-footer">
+
+        <div>
+            © Naïm HAMIDI
         </div>
 
-    </section>
+        <div>
+            Contrôle conditionnalité PAC · Haute-Garonne · 2026
+        </div>
 
-</main>
-
-
-<footer class="site-footer">
-
-    <div>
-        CONDITIONNALITÉ 31
-    </div>
-
-    <div>
-        Haute-Garonne · 2026
-    </div>
-
-</footer>
+    </footer>
 
 
-<script src="script.js"></script>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script src="script.js"></script>
 
 </body>
 </html>
+```

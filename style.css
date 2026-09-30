@@ -1,313 +1,3632 @@
-```css
 /* =========================================================
-   RESET & BASE
+   ICONES DES DOMAINES — INTERFACE UNIQUEMENT
 ========================================================= */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
-
-    background: #f5f5f7;
-    color: #1d1d1f;
-
-    min-height: 100vh;
-
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
-
-button,
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-button {
-    border: 0;
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-}
+const DOMAIN_ICONS = {
+    eau: "💧",
+    nitrates: "🌱",
+    oiseaux: "🐦"
+};
 
 
 /* =========================================================
-   TOPBAR
+   CONFIGURATION DES FICHES
 ========================================================= */
 
-.topbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+const FICHES = {
 
-    width: 100%;
+    eau:
+        "Conditionnalite-2026_fiche-technique_environnement-1_directive_cadre_eau.pdf",
 
-    background: rgba(255, 255, 255, 0.86);
+    nitrates:
+        "Conditionnalite-2026_fiche-technique_environnement-2_nitrates.pdf",
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    oiseaux:
+        "Conditionnalite-2026_fiche-technique_environnement-3_oiseaux_sauvages-habitats.pdf"
+};
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+
+const FICHES_MESURES = {
+
+    14:
+        "fichemesure1_2025_vf2-7.pdf",
+
+    15:
+        "fichemesure2_2024_vf-5.pdf",
+
+    16:
+        "fichemesure3_2025_vf-4.pdf",
+
+    17:
+        "fichemesure4_2025_vf-7.pdf",
+
+    19:
+        "fichemesure5_2024_vf-4.pdf",
+
+    20:
+        "fichemesure6_2024_vf-1.pdf",
+
+    21:
+        "fichemesure7_2025_vf-4.pdf",
+
+    22:
+        "fichemesure8_2024_vf-2.pdf"
+};
+
+
+/* =========================================================
+   DONNÉES DU DIAGNOSTIC
+========================================================= */
+
+const questions = [
+
+    /* =====================================================
+       DIRECTIVE CADRE SUR L'EAU
+    ====================================================== */
+
+    {
+        id: 1,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Vérification administrative",
+
+        titre:
+            "Prélèvement pour l'irrigation",
+
+        question:
+            "Disposez-vous d’un document attestant que vos prélèvements d’eau pour l’irrigation sont autorisés (autorisation de prélèvement, facture de l’année en cours, bulletin d’adhésion à une ASA, etc.) ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Je n’irrigue pas"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 2,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Contrôle sur place",
+
+        titre:
+            "Évaluation des volumes prélevés",
+
+        question:
+            "Disposez-vous d’un moyen approprié permettant d’évaluer et d’enregistrer les volumes d’eau prélevés, par exemple un compteur volumétrique ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Je n’irrigue pas"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 3,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Contrôle sur place",
+
+        titre:
+            "Protection des eaux souterraines contre les pollutions",
+
+        question:
+            "Votre exploitation est-elle exempte de rejets directs dans les sols de substances susceptibles de polluer les eaux souterraines, telles que des produits phytopharmaceutiques, carburants et lubrifiants, produits de désinfection ou de santé animale, fertilisants, engrais azotés ou phosphatés ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            }
+
+        ],
+
+        remarque:
+            "Le contrôleur peut vérifier ce point directement sur l’exploitation le jour du contrôle.",
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 4,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Contrôle sur place",
+
+        titre:
+            "Stockage des effluents d’élevage",
+
+        question:
+            "Respectez-vous les distances applicables entre les installations de stockage des effluents d’élevage et les points d’eau souterrains ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Je ne stocke pas d’effluents d’élevage"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 5,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Contrôle sur place",
+
+        titre:
+            "Prévention des retours et débordements lors du remplissage du pulvérisateur",
+
+        question:
+            "Lors du remplissage du pulvérisateur, disposez-vous d’au moins un dispositif permettant de prévenir le retour de produits vers le réseau d’eau et de limiter les risques de débordement ?",
+
+        exemples:
+            "Clapet anti-retour ; potence ; cuve intermédiaire ou de pré-stockage ; volucompteur à arrêt automatique ; autre dispositif équivalent.",
+
+        remarque:
+            "La simple présence de l’exploitant lors du remplissage ne constitue pas, à elle seule, un dispositif de prévention du débordement ou du retour de produits.",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label:
+                    "Oui, je dispose d’au moins un dispositif adapté"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Je n’utilise pas de produits phytopharmaceutiques"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 6,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Contrôle sur place",
+
+        titre:
+            "Lavage du pulvérisateur",
+
+        question:
+            "Lorsque le lavage du pulvérisateur n’est pas réalisé au champ, disposez-vous d’un dispositif permettant de récupérer les effluents issus du lavage ?",
+
+        exemples:
+            "Aire ou bâche adaptée ; bac récupérateur ; autre dispositif permettant de récupérer les effluents.",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Je fais appel à une entreprise de travaux agricoles ou je n’utilise pas de produits phytopharmaceutiques"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 7,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Contrôle sur place",
+
+        titre:
+            "Stockage des produits phytopharmaceutiques",
+
+        question:
+            "Les produits phytopharmaceutiques présents sur votre exploitation sont-ils stockés dans un local ou un espace dédié à leur stockage ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Je n’utilise pas de produits phytopharmaceutiques"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 8,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Vérification administrative",
+
+        titre:
+            "Composés phosphorés – Exploitations ICPE",
+
+        question:
+            "Disposez-vous d’un cahier d’enregistrement des pratiques (CEP) permettant de suivre les apports de composés phosphorés organiques ou minéraux, lorsque cette obligation s’applique à votre exploitation ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Mon exploitation n’est pas concernée par cette obligation"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    {
+        id: 9,
+
+        domaine: "eau",
+
+        domaineLabel:
+            "Directive cadre sur l'eau",
+
+        type:
+            "Vérification administrative",
+
+        titre:
+            "Bilan de matières – Exploitations ICPE",
+
+        question:
+            "Avez-vous réalisé le bilan de matières nécessaire pour justifier la conformité des quantités de phosphore apportées, lorsque cette obligation s’applique à votre exploitation ?",
+
+        reponses: [
+
+            {
+                key: "oui",
+                label: "Oui"
+            },
+
+            {
+                key: "non",
+                label: "Non"
+            },
+
+            {
+                key: "verification",
+                label: "Je dois vérifier"
+            },
+
+            {
+                key: "non-concerne",
+                label:
+                    "Non concerné — Mon exploitation n’est pas concernée par cette obligation"
+            }
+
+        ],
+
+        fiche:
+            FICHES.eau
+    },
+
+
+    /* =====================================================
+       FIN DE LA PARTIE 1
+       
+       NE FERME PAS ENCORE :
+       
+       const questions = [
+       
+       La partie 2 doit être collée DIRECTEMENT après cette
+       partie.
+    ====================================================== */
+
+/* =====================================================
+   OISEAUX / HABITATS
+===================================================== */
+
+{
+    id: 10,
+
+    domaine: "oiseaux",
+
+    domaineLabel:
+        "Directive oiseaux et habitats",
+
+    type:
+        "Contrôle sur place",
+
+    titre:
+        "Taille et coupe des arbres et des haies",
+
+    question:
+        "Respectez-vous la période d’interdiction de taille et de coupe des arbres et des haies du 16 mars au 15 août, sauf intervention imposée par une autorité extérieure pour des raisons de sécurité ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.oiseaux
+},
+
+
+{
+    id: 11,
+
+    domaine: "oiseaux",
+
+    domaineLabel:
+        "Directive oiseaux et habitats",
+
+    type:
+        "Contrôle sur place",
+
+    titre:
+        "Écobuage",
+
+    question:
+        "Vos pratiques d’écobuage respectent-elles la réglementation applicable et, lorsque cela est nécessaire, disposez-vous d’une dérogation préfectorale ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.oiseaux
+},
+
+
+{
+    id: 12,
+
+    domaine: "oiseaux",
+
+    domaineLabel:
+        "Directive oiseaux et habitats",
+
+    type:
+        "Contrôle sur place",
+
+    titre:
+        "Protection des habitats des espèces d’oiseaux protégées",
+
+    question:
+        "Préservez-vous les habitats des espèces d’oiseaux protégées présentes sur votre exploitation et évitez-vous toute destruction ou dégradation interdite de ces habitats ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        },
+
+        {
+            key: "non-concerne",
+            label:
+                "Non concerné — Aucune espèce protégée n’est répertoriée comme concernée sur mon exploitation"
+        }
+
+    ],
+
+    fiche:
+        FICHES.oiseaux
+},
+
+
+{
+    id: 13,
+
+    domaine: "oiseaux",
+
+    domaineLabel:
+        "Directive oiseaux et habitats",
+
+    type:
+        "Contrôle sur place",
+
+    titre:
+        "Sites Natura 2000",
+
+    question:
+        "Évitez-vous les travaux ou interventions susceptibles d’affecter de manière significative un site Natura 2000 ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        },
+
+        {
+            key: "non-concerne",
+            label:
+                "Non concerné — Mon exploitation n’est pas concernée par un site Natura 2000"
+        }
+
+    ],
+
+    fiche:
+        FICHES.oiseaux
+},
+
+
+/* =====================================================
+   QUESTION D'ORIENTATION ZONE VULNÉRABLE
+===================================================== */
+
+{
+    id: "zv",
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Orientation",
+
+    titre:
+        "Situation de l’exploitation vis-à-vis de la zone vulnérable",
+
+    question:
+        "Vos parcelles sont-elles situées en zone vulnérable aux nitrates ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label:
+                "Oui, au moins une de mes parcelles est située en zone vulnérable"
+        },
+
+        {
+            key: "non",
+            label:
+                "Non, aucune de mes parcelles n’est située en zone vulnérable"
+        },
+
+        {
+            key: "verification",
+            label:
+                "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates
+},
+
+
+/* =====================================================
+   DIRECTIVE NITRATES
+===================================================== */
+
+{
+    id: 14,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Vérification administrative",
+
+    titre:
+        "Périodes d’interdiction d’épandage",
+
+    question:
+        "Respectez-vous les périodes pendant lesquelles l’épandage des fertilisants azotés est interdit ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        },
+
+        {
+            key: "non-concerne",
+            label: "Non concerné"
+        }
+
+    ],
+
+    remarque:
+        "Consultez le document présentant les périodes d’interdiction d’épandage applicables à votre situation.",
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[14]
+},
+
+
+{
+    id: 15,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Vérification administrative et justificatifs",
+
+    titre:
+        "Capacités de stockage des effluents d’élevage",
+
+    question:
+        "Disposez-vous d’installations de stockage des effluents d’élevage étanches et d’une capacité suffisante pour respecter les périodes d’interdiction d’épandage ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        },
+
+        {
+            key: "non-concerne",
+            label:
+                "Non concerné — Je ne produis et ne stocke pas d’effluents d’élevage"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[15]
+},
+
+
+{
+    id: 16,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Vérification administrative",
+
+    titre:
+        "Équilibre de la fertilisation azotée – PPF et CEP",
+
+    question:
+        "Disposez-vous d’un plan prévisionnel de fumure (PPF) et d’un cahier d’enregistrement des pratiques (CEP) permettant de justifier le respect de l’équilibre de la fertilisation azotée ?",
+
+    remarque:
+        "Même si vous ne réalisez aucun épandage, vous devez tenir à jour un PPF et un CEP lorsque vous êtes concerné par cette obligation. Dans ce cas, renseignez les îlots et les parcelles sur lesquels aucun épandage n’est réalisé.",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[16]
+},
+
+
+{
+    id: 17,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Vérification administrative",
+
+    titre:
+        "Respect des doses d’azote",
+
+    question:
+        "Les doses d’azote prévues dans votre PPF respectent-elles les doses maximales calculées conformément aux règles applicables ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[17]
+},
+
+
+{
+    id: 18,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Vérification administrative",
+
+    titre:
+        "Analyse de sol",
+
+    question:
+        "Disposez-vous des analyses de sol requises par la réglementation, notamment concernant le reliquat d’azote ou, pour les situations concernées, l’analyse de matière organique des prairies ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates
+},
+
+
+{
+    id: 19,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Vérification administrative",
+
+    titre:
+        "Plafond de 170 kg d’azote par hectare",
+
+    question:
+        "La quantité d’azote contenue dans les effluents d’élevage épandus sur votre exploitation respecte-t-elle le plafond annuel de 170 kg d’azote par hectare de SAU ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        },
+
+        {
+            key: "non-concerne",
+            label:
+                "Non concerné — Je n’utilise pas d’effluents d’élevage, qu’ils soient produits sur mon exploitation ou provenant d’une autre exploitation"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[19]
+},
+
+
+{
+    id: 20,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Contrôle sur place et vérification administrative",
+
+    titre:
+        "Conditions particulières d’épandage",
+
+    question:
+        "Respectez-vous les conditions particulières applicables aux épandages, notamment concernant les sols à forte pente et les sols détrempés, inondés, gelés ou enneigés, ainsi que les distances à respecter à proximité des cours d’eau ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[20]
+},
+
+
+{
+    id: 21,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Contrôle sur place et vérification administrative",
+
+    titre:
+        "Couverture des sols",
+
+    question:
+        "Respectez-vous les règles relatives à la couverture des sols, notamment les dates d’implantation, la durée de maintien et les dates de destruction des couverts autorisés ?",
+
+    remarque:
+        "Consultez la fiche dédiée à la couverture des sols pour connaître les couverts autorisés et les règles applicables à leur implantation et à leur destruction.",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[21]
+},
+
+
+{
+    id: 22,
+
+    domaine: "nitrates",
+
+    domaineLabel:
+        "Directive nitrates",
+
+    type:
+        "Contrôle sur place",
+
+    titre:
+        "Bande tampon le long des cours d’eau",
+
+    question:
+        "Entretenez-vous correctement la bande tampon végétalisée le long des cours d’eau concernés ?",
+
+    reponses: [
+
+        {
+            key: "oui",
+            label: "Oui"
+        },
+
+        {
+            key: "non",
+            label: "Non"
+        },
+
+        {
+            key: "verification",
+            label: "Je dois vérifier"
+        }
+
+    ],
+
+    fiche:
+        FICHES.nitrates,
+
+    ficheMesure:
+        FICHES_MESURES[22]
 }
 
-.topbar-inner {
-    width: min(1180px, calc(100% - 40px));
-    min-height: 72px;
+];
 
-    margin: 0 auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* =========================================================
+   ÉTAT DU DIAGNOSTIC
+========================================================= */
 
-    gap: 30px;
-}
+let currentQuestionIndex = 0;
 
-.brand {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-}
+let answers = {};
 
-.brand-main {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-}
+/* =========================================================
+   PARTIE 3
+   LOGIQUE DU DIAGNOSTIC
+========================================================= */
 
-.brand-sub {
-    color: #86868b;
-    font-size: 12px;
-    font-weight: 500;
-}
 
-.header-title {
-    color: #6e6e73;
+/* =========================================================
+   VARIABLES GLOBALES
+========================================================= */
 
-    font-size: 14px;
-    font-weight: 500;
+let currentDomain = null;
+let currentQuestions = [];
+let questionHistory = [];
 
-    white-space: nowrap;
+
+/* =========================================================
+   RÉCUPÉRATION DES ÉLÉMENTS HTML
+========================================================= */
+
+const homeScreen =
+    document.getElementById("homeScreen");
+
+const diagnosticScreen =
+    document.getElementById("diagnosticScreen");
+
+const resultsScreen =
+    document.getElementById("resultsScreen");
+
+const actionsScreen =
+    document.getElementById("actionsScreen");
+
+
+const progressText =
+    document.getElementById("progressText");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+
+const domainBadge =
+    document.getElementById("domainBadge");
+
+const typeBadge =
+    document.getElementById("typeBadge");
+
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const questionTitle =
+    document.getElementById("questionTitle");
+
+const questionText =
+    document.getElementById("questionText");
+
+
+const examplesBlock =
+    document.getElementById("examplesBlock");
+
+const examplesText =
+    document.getElementById("examplesText");
+
+
+const remarkBlock =
+    document.getElementById("remarkBlock");
+
+const remarkText =
+    document.getElementById("remarkText");
+
+
+const answersContainer =
+    document.getElementById("answersContainer");
+
+
+const regulationLink =
+    document.getElementById("regulationLink");
+
+const supplementLink =
+    document.getElementById("supplementLink");
+
+
+const previousQuestionButton =
+    document.getElementById("previousQuestionButton");
+
+
+/* =========================================================
+   AFFICHAGE DES ÉCRANS
+========================================================= */
+
+function showScreen(screen) {
+
+    const screens = [
+        homeScreen,
+        diagnosticScreen,
+        resultsScreen,
+        actionsScreen
+    ];
+
+    screens.forEach(item => {
+
+        if (!item) {
+            return;
+        }
+
+        item.classList.remove("active");
+
+    });
+
+
+    if (screen) {
+
+        screen.classList.add("active");
+
+    }
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 
 /* =========================================================
-   MAIN CONTAINER
+   RETOUR À L'ACCUEIL
 ========================================================= */
 
-.app-container {
-    width: min(1180px, calc(100% - 40px));
+function goHome() {
 
-    margin: 0 auto;
+    showScreen(homeScreen);
 
-    padding-top: 70px;
-    padding-bottom: 80px;
 }
 
 
 /* =========================================================
-   SCREENS
+   DÉMARRER UN DIAGNOSTIC
 ========================================================= */
 
-.screen {
-    display: none;
-}
+function startDiagnostic(domain) {
 
-.screen.active {
-    display: block;
+    currentDomain = domain;
+
+    currentQuestionIndex = 0;
+
+    questionHistory = [];
+
+
+    /*
+       On ne supprime que les anciennes réponses du domaine
+       que l'utilisateur vient de relancer.
+    */
+
+    Object.keys(answers).forEach(questionId => {
+
+        const question = questions.find(
+            item => String(item.id) === String(questionId)
+        );
+
+        if (
+            question &&
+            question.domaine === domain
+        ) {
+
+            delete answers[questionId];
+
+        }
+
+    });
+
+
+    /*
+       Pour les nitrates, on commence par la question
+       d'orientation sur la zone vulnérable.
+    */
+
+    if (domain === "nitrates") {
+
+        currentQuestions = questions.filter(
+            question =>
+                question.domaine === "nitrates"
+        );
+
+    } else {
+
+        currentQuestions = questions.filter(
+            question =>
+                question.domaine === domain
+        );
+
+    }
+
+
+    if (currentQuestions.length === 0) {
+
+        console.error(
+            "Aucune question trouvée pour le domaine :",
+            domain
+        );
+
+        return;
+
+    }
+
+
+    showScreen(diagnosticScreen);
+
+    renderQuestion();
+
 }
 
 
 /* =========================================================
-   HERO
+   AFFICHER UNE QUESTION
 ========================================================= */
 
-.hero {
-    max-width: 850px;
+function renderQuestion() {
 
-    margin: 0 auto 55px;
+    const question =
+        currentQuestions[currentQuestionIndex];
 
-    text-align: center;
-}
 
-.eyebrow,
-.section-kicker {
-    color: #86868b;
+    if (!question) {
 
-    font-size: 11px;
-    font-weight: 700;
+        finishDiagnostic();
 
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
+        return;
 
-.hero .eyebrow {
-    margin-bottom: 18px;
-}
+    }
 
-.hero h1 {
-    color: #1d1d1f;
 
-    font-size: clamp(38px, 6vw, 66px);
+    /* -----------------------------------------------------
+       PROGRESSION
+    ----------------------------------------------------- */
 
-    line-height: 1.05;
-    letter-spacing: -0.045em;
+    const currentPosition =
+        currentQuestionIndex + 1;
 
-    font-weight: 700;
-}
+    const totalQuestions =
+        currentQuestions.length;
 
-.hero h1 span {
-    display: block;
 
-    color: #6e6e73;
+    if (progressText) {
 
-    font-weight: 600;
-}
+        progressText.textContent =
+            `Question ${currentPosition} sur ${totalQuestions}`;
 
-.hero-text {
-    max-width: 650px;
+    }
 
-    margin: 25px auto 0;
 
-    color: #6e6e73;
+    if (progressBar) {
 
-    font-size: 18px;
-    line-height: 1.6;
+        const percentage =
+            (currentPosition / totalQuestions) * 100;
+
+        progressBar.style.width =
+            `${percentage}%`;
+
+    }
+
+
+    /* -----------------------------------------------------
+       BADGE DIRECTIVE
+    ----------------------------------------------------- */
+
+    if (domainBadge) {
+
+        const icon =
+            DOMAIN_ICONS[question.domaine] || "";
+
+        domainBadge.textContent =
+            `${icon} ${question.domaineLabel}`.trim();
+
+    }
+
+
+    /* -----------------------------------------------------
+       TYPE DE CONTRÔLE
+    ----------------------------------------------------- */
+
+    if (typeBadge) {
+
+        if (question.type) {
+
+            typeBadge.textContent =
+                question.type;
+
+            typeBadge.style.display =
+                "inline-flex";
+
+        } else {
+
+            typeBadge.textContent = "";
+
+            typeBadge.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       NUMÉRO
+    ----------------------------------------------------- */
+
+    if (questionNumber) {
+
+        if (question.id === "zv") {
+
+            questionNumber.textContent =
+                "ORIENTATION";
+
+        } else {
+
+            questionNumber.textContent =
+                String(question.id).padStart(2, "0");
+
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       TITRE
+    ----------------------------------------------------- */
+
+    if (questionTitle) {
+
+        questionTitle.textContent =
+            question.titre || "";
+
+    }
+
+
+    /* -----------------------------------------------------
+       QUESTION
+    ----------------------------------------------------- */
+
+    if (questionText) {
+
+        questionText.textContent =
+            question.question || "";
+
+    }
+
+
+    /* -----------------------------------------------------
+       EXEMPLES
+    ----------------------------------------------------- */
+
+    if (
+        examplesBlock &&
+        examplesText
+    ) {
+
+        if (question.exemples) {
+
+            examplesText.textContent =
+                question.exemples;
+
+            examplesBlock.style.display =
+                "block";
+
+        } else {
+
+            examplesText.textContent = "";
+
+            examplesBlock.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       REMARQUE
+    ----------------------------------------------------- */
+
+    if (
+        remarkBlock &&
+        remarkText
+    ) {
+
+        if (question.remarque) {
+
+            remarkText.textContent =
+                question.remarque;
+
+            remarkBlock.style.display =
+                "block";
+
+        } else {
+
+            remarkText.textContent = "";
+
+            remarkBlock.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /* -----------------------------------------------------
+       LIENS RÉGLEMENTAIRES
+    ----------------------------------------------------- */
+
+    renderRegulationLinks(question);
+
+
+    /* -----------------------------------------------------
+       RÉPONSES
+    ----------------------------------------------------- */
+
+    renderAnswers(question);
+
+
+    /* -----------------------------------------------------
+       BOUTON QUESTION PRÉCÉDENTE
+    ----------------------------------------------------- */
+
+    updatePreviousButton();
+
 }
 
 
 /* =========================================================
-   CARDS
+   AFFICHAGE DES LIENS
 ========================================================= */
 
-.card {
-    background: #ffffff;
+function renderRegulationLinks(question) {
 
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    if (regulationLink) {
 
-    border-radius: 24px;
+        if (question.fiche) {
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.045),
-        0 2px 8px rgba(0, 0, 0, 0.025);
+            regulationLink.href =
+                question.fiche;
+
+            regulationLink.style.display =
+                "inline-flex";
+
+        } else {
+
+            regulationLink.removeAttribute("href");
+
+            regulationLink.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    if (supplementLink) {
+
+        if (question.ficheMesure) {
+
+            supplementLink.href =
+                question.ficheMesure;
+
+            supplementLink.style.display =
+                "inline-flex";
+
+        } else {
+
+            supplementLink.removeAttribute("href");
+
+            supplementLink.style.display =
+                "none";
+
+        }
+
+    }
+
 }
 
 
 /* =========================================================
-   SECTION HEADING
+   AFFICHAGE DES RÉPONSES
 ========================================================= */
 
-.section-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+function renderAnswers(question) {
 
-    margin-bottom: 28px;
-}
+    if (!answersContainer) {
+        return;
+    }
 
-.section-heading h2 {
-    margin-top: 7px;
 
-    color: #1d1d1f;
+    answersContainer.innerHTML = "";
 
-    font-size: 27px;
-    line-height: 1.15;
 
-    letter-spacing: -0.025em;
-}
+    question.reponses.forEach(response => {
 
-.section-heading p {
-    margin-top: 10px;
+        const button =
+            document.createElement("button");
 
-    color: #86868b;
 
-    font-size: 15px;
-    line-height: 1.5;
+        button.type =
+            "button";
+
+
+        button.className =
+            "answer-button";
+
+
+        /*
+           Couleurs :
+
+           Oui            = vert
+           Non            = rouge
+           À vérifier     = jaune
+           Non concerné   = gris
+        */
+
+        if (response.key === "oui") {
+
+            button.classList.add("yes");
+
+        }
+
+        else if (response.key === "non") {
+
+            button.classList.add("no");
+
+        }
+
+        else if (response.key === "verification") {
+
+            button.classList.add("verify");
+
+        }
+
+        else if (response.key === "non-concerne") {
+
+            button.classList.add("na");
+
+        }
+
+
+        button.textContent =
+            response.label;
+
+
+        /*
+           Si une réponse existe déjà pour cette question,
+           on l'indique visuellement.
+        */
+
+        const savedAnswer =
+            answers[String(question.id)];
+
+
+        if (
+            savedAnswer &&
+            savedAnswer.key === response.key
+        ) {
+
+            button.classList.add("selected");
+
+            button.setAttribute(
+                "aria-pressed",
+                "true"
+            );
+
+        } else {
+
+            button.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+        }
+
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                selectAnswer(
+                    question,
+                    response
+                );
+
+            }
+        );
+
+
+        answersContainer.appendChild(
+            button
+        );
+
+    });
+
 }
 
 
 /* =========================================================
-   IDENTIFICATION
+   ENREGISTRER UNE RÉPONSE
 ========================================================= */
 
-.identification-card {
-    padding: 34px;
+function selectAnswer(
+    question,
+    response
+) {
 
-    margin-bottom: 60px;
+    /*
+       Sauvegarde de la réponse.
+    */
+
+    answers[String(question.id)] = {
+
+        questionId:
+            question.id,
+
+        domaine:
+            question.domaine,
+
+        domaineLabel:
+            question.domaineLabel,
+
+        type:
+            question.type,
+
+        titre:
+            question.titre,
+
+        question:
+            question.question,
+
+        key:
+            response.key,
+
+        label:
+            response.label
+
+    };
+
+
+    /*
+       Cas particulier :
+       orientation zone vulnérable.
+    */
+
+    if (
+        question.id === "zv" &&
+        response.key === "non"
+    ) {
+
+        /*
+           L'exploitation indique qu'aucune parcelle
+           n'est en zone vulnérable.
+
+           On termine donc directement le questionnaire
+           nitrates.
+        */
+
+        questionHistory.push(
+            currentQuestionIndex
+        );
+
+        finishDiagnostic();
+
+        return;
+
+    }
+
+
+    /*
+       Dans tous les autres cas,
+       on passe à la question suivante.
+    */
+
+    goToNextQuestion();
+
 }
 
-.form-grid {
-    display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* =========================================================
+   QUESTION SUIVANTE
+========================================================= */
 
-    gap: 22px;
+function goToNextQuestion() {
+
+    questionHistory.push(
+        currentQuestionIndex
+    );
+
+
+    currentQuestionIndex++;
+
+
+    if (
+        currentQuestionIndex >=
+        currentQuestions.length
+    ) {
+
+        finishDiagnostic();
+
+        return;
+
+    }
+
+
+    renderQuestion();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
 
-    gap: 9px;
+/* =========================================================
+   QUESTION PRÉCÉDENTE
+========================================================= */
+
+function goToPreviousQuestion() {
+
+    if (
+        questionHistory.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const previousIndex =
+        questionHistory.pop();
+
+
+    if (
+        previousIndex < 0 ||
+        previousIndex >= currentQuestions.length
+    ) {
+
+        return;
+
+    }
+
+
+    currentQuestionIndex =
+        previousIndex;
+
+
+    renderQuestion();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
 }
 
-.form-group label {
-    color: #3a3a3c;
 
-    font-size: 13px;
-    font-weight: 600;
+/* =========================================================
+   BOUTON QUESTION PRÉCÉDENTE
+========================================================= */
+
+function updatePreviousButton() {
+
+    if (!previousQuestionButton) {
+        return;
+    }
+
+
+    if (
+        questionHistory.length === 0
+    ) {
+
+        previousQuestionButton.style.display =
+            "none";
+
+    } else {
+
+        previousQuestionButton.style.display =
+            "inline-flex";
+
+    }
+
 }
 
-.form-group input {
-    width: 100%;
 
-    min-height: 52px;
+/* =========================================================
+   ÉVÉNEMENT BOUTON PRÉCÉDENT
+========================================================= */
 
-    padding: 0 17px;
+if (previousQuestionButton) {
 
-    color: #1d1d1f;
-    background: #f5f5f7;
+    previousQuestionButton.addEventListener(
+        "click",
+        goToPreviousQuestion
+    );
 
-    border: 1px solid transparent;
-    border-radius: 14px;
-
-    outline: none;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
-.form-group input::placeholder {
-    color: #a1a1a6;
+
+/* =========================================================
+   FIN DU DIAGNOSTIC
+========================================================= */
+
+function finishDiagnostic() {
+
+    buildResults();
+
+    showScreen(resultsScreen);
+
 }
 
-.form-group input:focus {
-    background: #ffffff;
 
-    border-color: #0071e3;
+/* =========================================================
+   RÉCUPÉRER LES RÉPONSES
+========================================================= */
 
-    box-shadow:
-        0 0 0 4px rgba(0, 113, 227, 0.12);
+function getAnswerEntries() {
+
+    return Object.values(answers);
+
+}
+
+
+/* =========================================================
+   ORDRE DES RÉPONSES
+========================================================= */
+
+function sortAnswerEntries(entries) {
+
+    const questionOrder =
+        questions.map(
+            question =>
+                String(question.id)
+        );
+
+
+    return [...entries].sort(
+        (a, b) => {
+
+            const indexA =
+                questionOrder.indexOf(
+                    String(a.questionId)
+                );
+
+            const indexB =
+                questionOrder.indexOf(
+                    String(b.questionId)
+                );
+
+
+            return indexA - indexB;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CONSTRUCTION DU TABLEAU DE BORD
+========================================================= */
+
+function buildResults() {
+
+    const entries =
+        sortAnswerEntries(
+            getAnswerEntries()
+        );
+
+
+    updateStatistics(entries);
+
+    renderResultsList(entries);
+
+    renderActionsList(entries);
+
+}
+
+
+/* =========================================================
+   STATISTIQUES
+========================================================= */
+
+function updateStatistics(entries) {
+
+    const total =
+        entries.length;
+
+
+    const oui =
+        entries.filter(
+            answer =>
+                answer.key === "oui"
+        ).length;
+
+
+    const verification =
+        entries.filter(
+            answer =>
+                answer.key === "verification"
+        ).length;
+
+
+    const non =
+        entries.filter(
+            answer =>
+                answer.key === "non"
+        ).length;
+
+
+    const nonConcerne =
+        entries.filter(
+            answer =>
+                answer.key === "non-concerne"
+        ).length;
+
+
+    const statTotal =
+        document.getElementById(
+            "statTotal"
+        );
+
+    const statOui =
+        document.getElementById(
+            "statOui"
+        );
+
+    const statVerification =
+        document.getElementById(
+            "statVerification"
+        );
+
+    const statNon =
+        document.getElementById(
+            "statNon"
+        );
+
+    const statNonConcerne =
+        document.getElementById(
+            "statNonConcerne"
+        );
+
+
+    if (statTotal) {
+
+        statTotal.textContent =
+            total;
+
+    }
+
+
+    if (statOui) {
+
+        statOui.textContent =
+            oui;
+
+    }
+
+
+    if (statVerification) {
+
+        statVerification.textContent =
+            verification;
+
+    }
+
+
+    if (statNon) {
+
+        statNon.textContent =
+            non;
+
+    }
+
+
+    if (statNonConcerne) {
+
+        statNonConcerne.textContent =
+            nonConcerne;
+
+    }
+
+}
+
+
+/* =========================================================
+   COULEUR D'UNE RÉPONSE
+========================================================= */
+
+function getAnswerClass(key) {
+
+    if (key === "oui") {
+        return "yes";
+    }
+
+    if (key === "non") {
+        return "no";
+    }
+
+    if (key === "verification") {
+        return "verify";
+    }
+
+    if (key === "non-concerne") {
+        return "na";
+    }
+
+    return "";
+
+}
+
+
+/* =========================================================
+   LIBELLÉ COURT D'UNE RÉPONSE
+========================================================= */
+
+function getShortAnswerLabel(answer) {
+
+    if (!answer) {
+        return "";
+    }
+
+
+    switch (answer.key) {
+
+        case "oui":
+            return "Oui";
+
+        case "non":
+            return "Non";
+
+        case "verification":
+            return "À vérifier";
+
+        case "non-concerne":
+            return "Non concerné";
+
+        default:
+            return answer.label || "";
+
+    }
+
+}
+
+
+/* =========================================================
+   SYNTHÈSE DES RÉPONSES
+========================================================= */
+
+function renderResultsList(entries) {
+
+    const resultsList =
+        document.getElementById(
+            "resultsList"
+        );
+
+
+    if (!resultsList) {
+        return;
+    }
+
+
+    resultsList.innerHTML = "";
+
+
+    if (entries.length === 0) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "result-item";
+
+        empty.textContent =
+            "Aucune réponse enregistrée.";
+
+        resultsList.appendChild(
+            empty
+        );
+
+        return;
+
+    }
+
+
+    entries.forEach(answer => {
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "result-item";
+
+
+        /* ---------------------------------------------
+           DIRECTIVE
+        --------------------------------------------- */
+
+        const domain =
+            document.createElement("div");
+
+
+        domain.style.fontSize =
+            "11px";
+
+        domain.style.fontWeight =
+            "700";
+
+        domain.style.color =
+            "#86868b";
+
+        domain.style.marginBottom =
+            "6px";
+
+        domain.style.textTransform =
+            "uppercase";
+
+        domain.style.letterSpacing =
+            "0.05em";
+
+
+        const icon =
+            DOMAIN_ICONS[
+                answer.domaine
+            ] || "";
+
+
+        domain.textContent =
+            `${icon} ${answer.domaineLabel}`.trim();
+
+
+        /* ---------------------------------------------
+           QUESTION
+        --------------------------------------------- */
+
+        const question =
+            document.createElement("div");
+
+
+        question.className =
+            "result-question";
+
+
+        question.textContent =
+            answer.titre ||
+            answer.question;
+
+
+        /* ---------------------------------------------
+           RÉPONSE
+        --------------------------------------------- */
+
+        const response =
+            document.createElement("div");
+
+
+        response.className =
+            "result-answer";
+
+
+        const answerClass =
+            getAnswerClass(
+                answer.key
+            );
+
+
+        if (
+            answerClass === "yes"
+        ) {
+
+            response.style.color =
+                "#23834c";
+
+        }
+
+        else if (
+            answerClass === "no"
+        ) {
+
+            response.style.color =
+                "#b73535";
+
+        }
+
+        else if (
+            answerClass === "verify"
+        ) {
+
+            response.style.color =
+                "#a66a00";
+
+        }
+
+        else {
+
+            response.style.color =
+                "#68686d";
+
+        }
+
+
+        response.textContent =
+            getShortAnswerLabel(
+                answer
+            );
+
+
+        item.appendChild(
+            domain
+        );
+
+        item.appendChild(
+            question
+        );
+
+        item.appendChild(
+            response
+        );
+
+
+        resultsList.appendChild(
+            item
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   DÉTERMINER LES POINTS À VÉRIFIER
+========================================================= */
+
+function getActionEntries(entries) {
+
+    return entries.filter(
+        answer =>
+            answer.key === "non" ||
+            answer.key === "verification"
+    );
+
+}
+
+
+/* =========================================================
+   AFFICHAGE DES POINTS À VÉRIFIER
+========================================================= */
+
+function renderActionsList(entries) {
+
+    const actions =
+        getActionEntries(
+            entries
+        );
+
+
+    const actionsList =
+        document.getElementById(
+            "actionsList"
+        );
+
+
+    const fullActionsList =
+        document.getElementById(
+            "fullActionsList"
+        );
+
+
+    renderActionContainer(
+        actionsList,
+        actions
+    );
+
+
+    renderActionContainer(
+        fullActionsList,
+        actions
+    );
+
+}
+
+
+/* =========================================================
+   REMPLIR UN CONTENEUR DE POINTS À VÉRIFIER
+========================================================= */
+
+function renderActionContainer(
+    container,
+    actions
+) {
+
+    if (!container) {
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    if (actions.length === 0) {
+
+        const empty =
+            document.createElement("div");
+
+
+        empty.className =
+            "action-item";
+
+
+        empty.style.background =
+            "#eaf7ef";
+
+        empty.style.borderColor =
+            "#bfe8cc";
+
+        empty.style.color =
+            "#176b3a";
+
+
+        empty.textContent =
+            "Aucun point particulier n’a été identifié comme nécessitant une vérification à partir des réponses renseignées.";
+
+
+        container.appendChild(
+            empty
+        );
+
+        return;
+
+    }
+
+
+    actions.forEach(answer => {
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "action-item";
+
+
+        /* ---------------------------------------------
+           TITRE
+        --------------------------------------------- */
+
+        const title =
+            document.createElement(
+                "strong"
+            );
+
+
+        title.style.display =
+            "block";
+
+        title.style.marginBottom =
+            "6px";
+
+
+        title.textContent =
+            answer.titre;
+
+
+        /* ---------------------------------------------
+           DIRECTIVE
+        --------------------------------------------- */
+
+        const domain =
+            document.createElement(
+                "div"
+            );
+
+
+        domain.style.fontSize =
+            "12px";
+
+        domain.style.marginBottom =
+            "6px";
+
+        domain.style.opacity =
+            "0.75";
+
+
+        const icon =
+            DOMAIN_ICONS[
+                answer.domaine
+            ] || "";
+
+
+        domain.textContent =
+            `${icon} ${answer.domaineLabel}`.trim();
+
+
+        /* ---------------------------------------------
+           STATUT
+        --------------------------------------------- */
+
+        const status =
+            document.createElement(
+                "div"
+            );
+
+
+        status.style.fontWeight =
+            "650";
+
+
+        if (
+            answer.key ===
+            "verification"
+        ) {
+
+            status.textContent =
+                "Réponse : À vérifier";
+
+        } else {
+
+            status.textContent =
+                "Réponse : Non";
+
+        }
+
+
+        item.appendChild(
+            title
+        );
+
+        item.appendChild(
+            domain
+        );
+
+        item.appendChild(
+            status
+        );
+
+
+        container.appendChild(
+            item
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   AFFICHER LE TABLEAU DE BORD
+========================================================= */
+
+function showResults() {
+
+    buildResults();
+
+    showScreen(resultsScreen);
+
+}
+
+
+/* =========================================================
+   AFFICHER LA PAGE DES POINTS À VÉRIFIER
+========================================================= */
+
+function showActions() {
+
+    const entries =
+        sortAnswerEntries(
+            getAnswerEntries()
+        );
+
+
+    renderActionsList(
+        entries
+    );
+
+
+    showScreen(
+        actionsScreen
+    );
+
+}
+
+
+/* =========================================================
+   RECOMMENCER LE DIAGNOSTIC
+========================================================= */
+
+function restartDiagnostic() {
+
+    /*
+       Réinitialisation complète.
+    */
+
+    currentDomain = null;
+
+    currentQuestions = [];
+
+    currentQuestionIndex = 0;
+
+    questionHistory = [];
+
+    answers = {};
+
+
+    /* ---------------------------------------------
+       REMISE À ZÉRO DES CHAMPS D'IDENTIFICATION
+    --------------------------------------------- */
+
+    const operatorName =
+        document.getElementById(
+            "operatorName"
+        );
+
+
+    const farmName =
+        document.getElementById(
+            "farmName"
+        );
+
+
+    if (operatorName) {
+
+        operatorName.value = "";
+
+    }
+
+
+    if (farmName) {
+
+        farmName.value = "";
+
+    }
+
+
+    /* ---------------------------------------------
+       RETOUR ACCUEIL
+    --------------------------------------------- */
+
+    showScreen(homeScreen);
+
+}
+
+
+/* =========================================================
+   NETTOYAGE DU TEXTE POUR LE PDF
+========================================================= */
+
+function cleanPDFText(text) {
+
+    if (
+        text === null ||
+        text === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    let cleaned =
+        String(text);
+
+
+    /*
+       Suppression des emojis.
+
+       Le site conserve les emojis,
+       mais le PDF doit rester administratif
+       et professionnel.
+    */
+
+    cleaned = cleaned.replace(
+        /[\u{1F300}-\u{1FAFF}]/gu,
+        ""
+    );
+
+
+    cleaned = cleaned.replace(
+        /[\u{2600}-\u{27BF}]/gu,
+        ""
+    );
+
+
+    /*
+       Nettoyage des espaces.
+    */
+
+    cleaned = cleaned
+        .replace(/\s+/g, " ")
+        .trim();
+
+
+    return cleaned;
+
+}
+
+
+/* =========================================================
+   NOM DE L'EXPLOITANT
+========================================================= */
+
+function getOperatorName() {
+
+    const input =
+        document.getElementById(
+            "operatorName"
+        );
+
+
+    if (!input) {
+        return "";
+    }
+
+
+    return input.value.trim();
+
+}
+
+
+/* =========================================================
+   NOM DE L'EXPLOITATION
+========================================================= */
+
+function getFarmName() {
+
+    const input =
+        document.getElementById(
+            "farmName"
+        );
+
+
+    if (!input) {
+        return "";
+    }
+
+
+    return input.value.trim();
+
+}
+
+
+/* =========================================================
+   DIRECTIVES CONCERNÉES
+========================================================= */
+
+function getConcernedDomains() {
+
+    const entries =
+        getAnswerEntries();
+
+
+    const domainOrder = [
+        "eau",
+        "nitrates",
+        "oiseaux"
+    ];
+
+
+    const domains =
+        new Set();
+
+
+    entries.forEach(answer => {
+
+        /*
+           Cas particulier nitrates :
+
+           si la réponse à l'orientation est
+           "aucune parcelle en zone vulnérable",
+           on considère la directive comme
+           non concernée dans l'orientation PDF.
+        */
+
+        if (
+            answer.questionId === "zv" &&
+            answer.key === "non"
+        ) {
+
+            return;
+
+        }
+
+
+        domains.add(
+            answer.domaine
+        );
+
+    });
+
+
+    return domainOrder
+        .filter(
+            domain =>
+                domains.has(domain)
+        )
+        .map(domain => {
+
+            if (domain === "eau") {
+
+                return "Directive cadre sur l'eau";
+
+            }
+
+
+            if (domain === "nitrates") {
+
+                return "Directive nitrates";
+
+            }
+
+
+            if (domain === "oiseaux") {
+
+                return "Directive oiseaux et habitats";
+
+            }
+
+
+            return domain;
+
+        });
+
+}
+
+
+/* =========================================================
+   DIRECTIVES NON CONCERNÉES
+========================================================= */
+
+function getNotConcernedDomains() {
+
+    const result = [];
+
+
+    const nitrateOrientation =
+        answers["zv"];
+
+
+    if (
+        nitrateOrientation &&
+        nitrateOrientation.key === "non"
+    ) {
+
+        result.push(
+            "Directive nitrates"
+        );
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   INITIALISATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        /*
+           On s'assure que seul l'accueil
+           est visible au chargement.
+        */
+
+        if (homeScreen) {
+
+            homeScreen.classList.add(
+                "active"
+            );
+
+        }
+
+
+        if (diagnosticScreen) {
+
+            diagnosticScreen.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        if (resultsScreen) {
+
+            resultsScreen.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        if (actionsScreen) {
+
+            actionsScreen.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        /*
+           Bouton précédent caché au départ.
+        */
+
+        if (previousQuestionButton) {
+
+            previousQuestionButton.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FIN PARTIE 3
+
+   La PARTIE 4 doit être collée directement à la suite.
+
+   Elle contiendra toute la génération PDF :
+
+   - IDENTIFICATION
+   - ORIENTATION
+   - TABLEAU DE BORD
+   - SYNTHÈSE DES RÉPONSES
+   - POINTS À VÉRIFIER
+
+   Il n'y aura PAS :
+   - d'emojis dans le PDF
+   - d'ANNEXE — DÉTAIL DES RÉPONSES
+========================================================= */
+
+/* =========================================================
+   PARTIE 4
+   GÉNÉRATION DU PDF
+========================================================= */
+
+
+/* =========================================================
+   COULEURS DU PDF
+========================================================= */
+
+const PDF_COLORS = {
+
+    text: [29, 29, 31],
+
+    secondary: [110, 110, 115],
+
+    muted: [134, 134, 139],
+
+    line: [220, 220, 224],
+
+    background: [245, 245, 247],
+
+    white: [255, 255, 255],
+
+    blue: [0, 113, 227],
+
+    green: [35, 131, 76],
+
+    greenLight: [234, 247, 239],
+
+    red: [183, 53, 53],
+
+    redLight: [252, 237, 237],
+
+    yellow: [166, 106, 0],
+
+    yellowLight: [255, 247, 223],
+
+    gray: [104, 104, 109],
+
+    grayLight: [241, 241, 243],
+
+    eau: [37, 99, 235],
+
+    nitrates: [35, 131, 76],
+
+    oiseaux: [124, 91, 180]
+
+};
+
+
+/* =========================================================
+   UTILITAIRE COULEUR DE DIRECTIVE
+========================================================= */
+
+function getPDFDomainColor(domain) {
+
+    if (domain === "eau") {
+
+        return PDF_COLORS.eau;
+
+    }
+
+
+    if (domain === "nitrates") {
+
+        return PDF_COLORS.nitrates;
+
+    }
+
+
+    if (domain === "oiseaux") {
+
+        return PDF_COLORS.oiseaux;
+
+    }
+
+
+    return PDF_COLORS.blue;
+
+}
+
+
+/* =========================================================
+   COULEURS DES RÉPONSES
+========================================================= */
+
+function getPDFAnswerColors(key) {
+
+    if (key === "oui") {
+
+        return {
+
+            text:
+                PDF_COLORS.green,
+
+            background:
+                PDF_COLORS.greenLight
+
+        };
+
+    }
+
+
+    if (key === "non") {
+
+        return {
+
+            text:
+                PDF_COLORS.red,
+
+            background:
+                PDF_COLORS.redLight
+
+        };
+
+    }
+
+
+    if (key === "verification") {
+
+        return {
+
+            text:
+                PDF_COLORS.yellow,
+
+            background:
+                PDF_COLORS.yellowLight
+
+        };
+
+    }
+
+
+    return {
+
+        text:
+            PDF_COLORS.gray,
+
+        background:
+            PDF_COLORS.grayLight
+
+    };
+
+}
+
+
+/* =========================================================
+   NUMÉRO DE PAGE
+========================================================= */
+
+function addPDFPageNumber(
+    doc,
+    pageNumber
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+    const pageHeight =
+        doc.internal.pageSize.getHeight();
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.muted
+    );
+
+
+    doc.text(
+        `Page ${pageNumber}`,
+        pageWidth - 18,
+        pageHeight - 10,
+        {
+            align: "right"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PIED DE PAGE
+========================================================= */
+
+function addPDFFooter(
+    doc,
+    pageNumber
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+    const pageHeight =
+        doc.internal.pageSize.getHeight();
+
+
+    doc.setDrawColor(
+        ...PDF_COLORS.line
+    );
+
+
+    doc.setLineWidth(0.25);
+
+
+    doc.line(
+        18,
+        pageHeight - 16,
+        pageWidth - 18,
+        pageHeight - 16
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(7.5);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.muted
+    );
+
+
+    doc.text(
+        "Contrôle conditionnalité PAC - volet Environnement",
+        18,
+        pageHeight - 10
+    );
+
+
+    doc.text(
+        `Page ${pageNumber}`,
+        pageWidth - 18,
+        pageHeight - 10,
+        {
+            align: "right"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   EN-TÊTE DES PAGES
+========================================================= */
+
+function addPDFPageHeader(
+    doc,
+    title
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.muted
+    );
+
+
+    doc.text(
+        "CONDITIONNALITÉ PAC · HAUTE-GARONNE · 2026",
+        18,
+        16
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.text(
+        cleanPDFText(title).toUpperCase(),
+        pageWidth - 18,
+        16,
+        {
+            align: "right"
+        }
+    );
+
+
+    doc.setDrawColor(
+        ...PDF_COLORS.line
+    );
+
+
+    doc.setLineWidth(0.25);
+
+
+    doc.line(
+        18,
+        21,
+        pageWidth - 18,
+        21
+    );
+
+}
+
+
+/* =========================================================
+   AJOUTER UNE NOUVELLE PAGE
+========================================================= */
+
+function addPDFPage(
+    doc,
+    title
+) {
+
+    doc.addPage();
+
+
+    const pageNumber =
+        doc.internal.getNumberOfPages();
+
+
+    addPDFPageHeader(
+        doc,
+        title
+    );
+
+
+    addPDFFooter(
+        doc,
+        pageNumber
+    );
+
+
+    return 31;
+
+}
+
+
+/* =========================================================
+   VÉRIFIER L'ESPACE DISPONIBLE
+========================================================= */
+
+function ensurePDFSpace(
+    doc,
+    y,
+    requiredHeight,
+    sectionTitle
+) {
+
+    const pageHeight =
+        doc.internal.pageSize.getHeight();
+
+
+    const bottomLimit =
+        pageHeight - 24;
+
+
+    if (
+        y + requiredHeight >
+        bottomLimit
+    ) {
+
+        return addPDFPage(
+            doc,
+            sectionTitle
+        );
+
+    }
+
+
+    return y;
+
+}
+
+
+/* =========================================================
+   TITRE DE SECTION
+========================================================= */
+
+function addPDFSectionTitle(
+    doc,
+    title,
+    y
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    y = ensurePDFSpace(
+        doc,
+        y,
+        18,
+        title
+    );
+
+
+    doc.setFillColor(
+        ...PDF_COLORS.text
+    );
+
+
+    doc.roundedRect(
+        18,
+        y,
+        5,
+        5,
+        1.3,
+        1.3,
+        "F"
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(12);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.text
+    );
+
+
+    doc.text(
+        cleanPDFText(title),
+        28,
+        y + 4.3
+    );
+
+
+    doc.setDrawColor(
+        ...PDF_COLORS.line
+    );
+
+
+    doc.setLineWidth(0.2);
+
+
+    doc.line(
+        28,
+        y + 8,
+        pageWidth - 18,
+        y + 8
+    );
+
+
+    return y + 17;
+
+}
+
+
+/* =========================================================
+   PETIT LABEL
+========================================================= */
+
+function addPDFLabel(
+    doc,
+    label,
+    value,
+    x,
+    y,
+    width
+) {
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(7.5);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.muted
+    );
+
+
+    doc.text(
+        cleanPDFText(label).toUpperCase(),
+        x,
+        y
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(10);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.text
+    );
+
+
+    const lines =
+        doc.splitTextToSize(
+            cleanPDFText(value) || "Non renseigné",
+            width
+        );
+
+
+    doc.text(
+        lines,
+        x,
+        y + 6
+    );
+
+
+    return (
+        y +
+        6 +
+        (lines.length * 4.5)
+    );
+
+}
+
+
+/* =========================================================
+   CARTE IDENTIFICATION
+========================================================= */
+
+function addPDFIdentification(
+    doc,
+    y
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    const operatorName =
+        cleanPDFText(
+            getOperatorName()
+        ) || "Non renseigné";
+
+
+    const farmName =
+        cleanPDFText(
+            getFarmName()
+        ) || "Non renseigné";
+
+
+    y = ensurePDFSpace(
+        doc,
+        y,
+        42,
+        "Identification"
+    );
+
+
+    doc.setFillColor(
+        ...PDF_COLORS.background
+    );
+
+
+    doc.roundedRect(
+        18,
+        y,
+        pageWidth - 36,
+        34,
+        3,
+        3,
+        "F"
+    );
+
+
+    const columnWidth =
+        (pageWidth - 48) / 2;
+
+
+    addPDFLabel(
+        doc,
+        "Exploitant",
+        operatorName,
+        24,
+        y + 9,
+        columnWidth - 5
+    );
+
+
+    addPDFLabel(
+        doc,
+        "Exploitation",
+        farmName,
+        24 + columnWidth,
+        y + 9,
+        columnWidth - 5
+    );
+
+
+    return y + 43;
+
 }
 
 
@@ -315,1080 +3634,1655 @@ a {
    ORIENTATION
 ========================================================= */
 
-.orientation-section {
-    margin-bottom: 45px;
-}
+function addPDFOrientation(
+    doc,
+    y
+) {
 
-.orientation-heading {
-    margin-bottom: 24px;
-}
+    const concerned =
+        getConcernedDomains();
 
-.orientation-heading p {
-    max-width: 600px;
-}
 
+    const notConcerned =
+        getNotConcernedDomains();
 
-/* =========================================================
-   DOMAIN GRID
-========================================================= */
 
-.domain-grid {
-    display: grid;
+    const allDomains = [
 
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+        {
+            key: "eau",
+            label:
+                "Directive cadre sur l'eau"
+        },
 
-    gap: 18px;
-}
+        {
+            key: "nitrates",
+            label:
+                "Directive nitrates"
+        },
 
-.domain-card {
-    position: relative;
+        {
+            key: "oiseaux",
+            label:
+                "Directive oiseaux et habitats"
+        }
 
-    min-height: 245px;
+    ];
 
-    padding: 28px;
 
-    text-align: left;
+    allDomains.forEach(domain => {
 
-    background: #ffffff;
+        y = ensurePDFSpace(
+            doc,
+            y,
+            17,
+            "Orientation"
+        );
 
-    border: 1px solid rgba(0, 0, 0, 0.06);
 
-    border-radius: 24px;
+        const isConcerned =
+            concerned.includes(
+                domain.label
+            );
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.04),
-        0 2px 8px rgba(0, 0, 0, 0.025);
 
-    display: flex;
-    flex-direction: column;
+        const isNotConcerned =
+            notConcerned.includes(
+                domain.label
+            );
 
-    align-items: flex-start;
 
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease;
-}
+        const color =
+            getPDFDomainColor(
+                domain.key
+            );
 
-.domain-card:hover {
-    transform: translateY(-4px);
 
-    box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.08),
-        0 4px 12px rgba(0, 0, 0, 0.035);
+        doc.setFillColor(
+            248,
+            248,
+            250
+        );
 
-    border-color: rgba(0, 0, 0, 0.1);
-}
 
-.domain-card:active {
-    transform: scale(0.985);
-}
+        doc.roundedRect(
+            18,
+            y,
+            174,
+            13,
+            2.5,
+            2.5,
+            "F"
+        );
 
-.domain-icon {
-    width: 58px;
-    height: 58px;
 
-    margin-bottom: 28px;
+        doc.setFillColor(
+            ...color
+        );
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    background: #f5f5f7;
+        doc.roundedRect(
+            22,
+            y + 3.5,
+            4,
+            6,
+            1,
+            1,
+            "F"
+        );
 
-    border-radius: 17px;
 
-    font-size: 28px;
+        doc.setFont(
+            "helvetica",
+            "bold"
+        );
 
-    line-height: 1;
-}
 
-.domain-content {
-    padding-right: 25px;
-}
+        doc.setFontSize(9);
 
-.domain-label {
-    color: #1d1d1f;
 
-    font-size: 18px;
-    font-weight: 650;
+        doc.setTextColor(
+            ...PDF_COLORS.text
+        );
 
-    line-height: 1.25;
 
-    letter-spacing: -0.015em;
-}
+        doc.text(
+            cleanPDFText(
+                domain.label
+            ),
+            30,
+            y + 8.2
+        );
 
-.domain-description {
-    margin-top: 11px;
 
-    color: #86868b;
+        let status =
+            "Non renseigné";
 
-    font-size: 14px;
-    line-height: 1.5;
-}
 
-.domain-arrow {
-    position: absolute;
+        let statusColor =
+            PDF_COLORS.muted;
 
-    right: 24px;
-    bottom: 22px;
 
-    width: 30px;
-    height: 30px;
+        if (isConcerned) {
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            status =
+                "Concernée";
 
-    color: #0071e3;
+            statusColor =
+                PDF_COLORS.green;
 
-    font-size: 20px;
+        }
 
-    border-radius: 50%;
-}
 
+        if (isNotConcerned) {
 
-/* =========================================================
-   INFORMATION CARD
-========================================================= */
+            status =
+                "Non concernée";
 
-.information-card {
-    display: flex;
-    align-items: flex-start;
+            statusColor =
+                PDF_COLORS.gray;
 
-    gap: 14px;
+        }
 
-    max-width: 850px;
 
-    margin: 0 auto;
+        doc.setFont(
+            "helvetica",
+            "bold"
+        );
 
-    padding: 22px 24px;
 
-    background: rgba(255, 255, 255, 0.7);
+        doc.setFontSize(8);
 
-    border: 1px solid rgba(0, 0, 0, 0.05);
 
-    border-radius: 18px;
-}
+        doc.setTextColor(
+            ...statusColor
+        );
 
-.information-icon {
-    flex: 0 0 auto;
 
-    width: 27px;
-    height: 27px;
+        doc.text(
+            status,
+            186,
+            y + 8.2,
+            {
+                align: "right"
+            }
+        );
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    color: #ffffff;
+        y += 17;
 
-    background: #86868b;
+    });
 
-    border-radius: 50%;
 
-    font-size: 14px;
-    font-weight: 700;
-}
+    return y + 2;
 
-.information-card strong {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #3a3a3c;
-
-    font-size: 14px;
-}
-
-.information-card p {
-    color: #86868b;
-
-    font-size: 13px;
-    line-height: 1.5;
 }
 
 
 /* =========================================================
-   DIAGNOSTIC TOP
+   CARTE STATISTIQUE
 ========================================================= */
 
-.diagnostic-top {
-    display: flex;
-    align-items: center;
+function addPDFStatCard(
+    doc,
+    x,
+    y,
+    width,
+    value,
+    label,
+    color
+) {
 
-    gap: 30px;
+    doc.setFillColor(
+        248,
+        248,
+        250
+    );
 
-    margin-bottom: 28px;
-}
 
-.back-button {
-    flex: 0 0 auto;
+    doc.roundedRect(
+        x,
+        y,
+        width,
+        25,
+        2.5,
+        2.5,
+        "F"
+    );
 
-    display: inline-flex;
-    align-items: center;
 
-    gap: 7px;
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
 
-    padding: 10px 14px;
 
-    color: #0071e3;
-    background: transparent;
+    doc.setFontSize(18);
 
-    font-size: 14px;
-    font-weight: 600;
 
-    border-radius: 12px;
+    doc.setTextColor(
+        ...color
+    );
 
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
 
-.back-button:hover {
-    background: rgba(0, 113, 227, 0.08);
-}
+    doc.text(
+        String(value),
+        x + 6,
+        y + 11
+    );
 
-.back-button:active {
-    transform: scale(0.97);
-}
 
-.progress-area {
-    flex: 1;
-}
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
 
-.progress-label {
-    margin-bottom: 8px;
 
-    color: #86868b;
+    doc.setFontSize(7.5);
 
-    font-size: 12px;
-    font-weight: 600;
-}
 
-.progress-track {
-    width: 100%;
-    height: 5px;
+    doc.setTextColor(
+        ...PDF_COLORS.secondary
+    );
 
-    overflow: hidden;
 
-    background: #e5e5ea;
+    const labelLines =
+        doc.splitTextToSize(
+            cleanPDFText(label),
+            width - 12
+        );
 
-    border-radius: 999px;
-}
 
-.progress-bar {
-    width: 0;
-    height: 100%;
-
-    background: #0071e3;
-
-    border-radius: inherit;
-
-    transition: width 0.35s ease;
-}
-
-
-/* =========================================================
-   QUESTION CARD
-========================================================= */
-
-.question-card {
-    max-width: 900px;
-
-    margin: 0 auto;
-
-    padding: 42px;
-
-    background: #ffffff;
-
-    border: 1px solid rgba(0, 0, 0, 0.06);
-
-    border-radius: 28px;
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.055),
-        0 3px 10px rgba(0, 0, 0, 0.025);
-}
-
-.question-meta {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 8px;
-
-    margin-bottom: 28px;
-}
-
-.badge {
-    display: inline-flex;
-    align-items: center;
-
-    min-height: 30px;
-
-    padding: 6px 11px;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.domain-badge {
-    color: #3a3a3c;
-    background: #f5f5f7;
-}
-
-.type-badge {
-    color: #0071e3;
-    background: rgba(0, 113, 227, 0.09);
-}
-
-.question-number {
-    display: flex;
-    align-items: baseline;
-
-    gap: 10px;
-
-    margin-bottom: 10px;
-}
-
-.question-number span {
-    color: #86868b;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    letter-spacing: 0.12em;
-}
-
-.question-number strong {
-    color: #0071e3;
-
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.question-card h1 {
-    max-width: 760px;
-
-    color: #1d1d1f;
-
-    font-size: clamp(28px, 4vw, 42px);
-
-    line-height: 1.12;
-
-    letter-spacing: -0.035em;
-
-    margin-bottom: 20px;
-}
-
-.question-text {
-    max-width: 780px;
-
-    color: #3a3a3c;
-
-    font-size: 17px;
-
-    line-height: 1.65;
-}
-
-
-/* =========================================================
-   QUESTION INFORMATION
-========================================================= */
-
-.question-info {
-    margin-top: 26px;
-
-    padding: 17px 19px;
-
-    border-radius: 16px;
-
-    font-size: 14px;
-    line-height: 1.55;
-}
-
-.examples-block {
-    background: #f5f5f7;
-}
-
-.remark-block {
-    background: rgba(0, 113, 227, 0.06);
-
-    border: 1px solid rgba(0, 113, 227, 0.08);
-}
-
-.info-title {
-    margin-bottom: 5px;
-
-    color: #3a3a3c;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-}
-
-
-/* =========================================================
-   ANSWERS
-========================================================= */
-
-.answers-container {
-    display: grid;
-
-    gap: 11px;
-
-    margin-top: 35px;
-}
-
-.answer-button,
-.answer-option,
-.answers-container button {
-    width: 100%;
-
-    min-height: 58px;
-
-    padding: 15px 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    text-align: left;
-
-    color: #1d1d1f;
-    background: #f5f5f7;
-
-    border: 1px solid transparent;
-
-    border-radius: 16px;
-
-    font-size: 15px;
-    font-weight: 550;
-
-    transition:
-        background 0.18s ease,
-        border-color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-}
-
-.answer-button:hover,
-.answer-option:hover,
-.answers-container button:hover {
-    background: #eeeeF0;
-
-    border-color: rgba(0, 0, 0, 0.07);
-
-    transform: translateY(-1px);
-}
-
-.answer-button:active,
-.answer-option:active,
-.answers-container button:active {
-    transform: scale(0.99);
-}
-
-
-/* =========================================================
-   ANSWER STATES
-========================================================= */
-
-.answer-button.yes,
-.answer-option.yes,
-.answers-container button.yes {
-    color: #176b3a;
-    background: #eaf7ef;
-
-    border-color: #bfe8cc;
-}
-
-.answer-button.no,
-.answer-option.no,
-.answers-container button.no {
-    color: #a12d2d;
-    background: #fceded;
-
-    border-color: #f2c5c5;
-}
-
-.answer-button.verify,
-.answer-option.verify,
-.answers-container button.verify {
-    color: #8a5a00;
-    background: #fff7df;
-
-    border-color: #f1df9f;
-}
-
-.answer-button.na,
-.answer-option.na,
-.answers-container button.na {
-    color: #55565b;
-    background: #f1f1f3;
-
-    border-color: #dedee2;
-}
-
-
-/* =========================================================
-   REGULATION LINKS
-========================================================= */
-
-.regulation-links {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin-top: 26px;
-}
-
-.regulation-links a {
-    display: inline-flex;
-
-    align-items: center;
-
-    min-height: 38px;
-
-    padding: 8px 13px;
-
-    color: #0071e3;
-
-    background: rgba(0, 113, 227, 0.07);
-
-    border-radius: 11px;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.regulation-links a:hover {
-    background: rgba(0, 113, 227, 0.12);
-
-    transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   QUESTION NAVIGATION
-========================================================= */
-
-.question-navigation {
-    display: flex;
-    justify-content: flex-start;
-
-    margin-top: 28px;
-}
-
-.secondary-button,
-.primary-button {
-    min-height: 46px;
-
-    padding: 0 20px;
-
-    border-radius: 13px;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        background 0.18s ease;
-}
-
-.secondary-button {
-    color: #1d1d1f;
-
-    background: #e9e9ed;
-}
-
-.secondary-button:hover {
-    background: #dedee3;
-
-    transform: translateY(-1px);
-}
-
-.primary-button {
-    color: #ffffff;
-
-    background: #0071e3;
-
-    box-shadow:
-        0 5px 15px rgba(0, 113, 227, 0.2);
-}
-
-.primary-button:hover {
-    background: #0077ed;
-
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 113, 227, 0.25);
-}
-
-.primary-button:active,
-.secondary-button:active {
-    transform: scale(0.98);
-}
-
-
-/* =========================================================
-   RESULTS HEADER
-========================================================= */
-
-.results-header {
-    max-width: 850px;
-
-    margin: 0 auto 42px;
-
-    text-align: center;
-}
-
-.results-header h1 {
-    margin-top: 10px;
-
-    color: #1d1d1f;
-
-    font-size: clamp(36px, 5vw, 55px);
-
-    line-height: 1.05;
-
-    letter-spacing: -0.04em;
-}
-
-.results-header p {
-    max-width: 650px;
-
-    margin: 18px auto 0;
-
-    color: #86868b;
-
-    font-size: 17px;
-
-    line-height: 1.55;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, minmax(0, 1fr));
-
-    gap: 12px;
-
-    margin-bottom: 30px;
-}
-
-.stat-card {
-    min-height: 135px;
-
-    padding: 22px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-
-    background: #ffffff;
-
-    border: 1px solid rgba(0, 0, 0, 0.05);
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.035);
-}
-
-.stat-value {
-    color: #1d1d1f;
-
-    font-size: 34px;
-
-    line-height: 1;
-
-    font-weight: 700;
-
-    letter-spacing: -0.04em;
-}
-
-.stat-label {
-    margin-top: 10px;
-
-    color: #86868b;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.stat-positive .stat-value {
-    color: #23834c;
-}
-
-.stat-warning .stat-value {
-    color: #a66a00;
-}
-
-.stat-negative .stat-value {
-    color: #b73535;
-}
-
-.stat-neutral .stat-value {
-    color: #68686d;
-}
-
-
-/* =========================================================
-   RESULTS / ACTION CARDS
-========================================================= */
-
-.results-card,
-.actions-card {
-    padding: 34px;
-
-    margin-bottom: 20px;
-}
-
-.results-list,
-.actions-list {
-    display: flex;
-    flex-direction: column;
-
-    gap: 10px;
-}
-
-
-/* =========================================================
-   RESULT ITEMS
-========================================================= */
-
-.result-item,
-.results-list > div {
-    padding: 17px 18px;
-
-    background: #f5f5f7;
-
-    border-radius: 15px;
-
-    border: 1px solid transparent;
-}
-
-.result-item:hover,
-.results-list > div:hover {
-    border-color: rgba(0, 0, 0, 0.06);
-}
-
-.result-question {
-    color: #3a3a3c;
-
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.result-answer {
-    margin-top: 7px;
-
-    font-size: 13px;
-    font-weight: 650;
-}
-
-
-/* =========================================================
-   ACTION ITEMS
-========================================================= */
-
-.action-item,
-.actions-list > div {
-    padding: 18px;
-
-    background: #fff8e6;
-
-    border: 1px solid #f0dfac;
-
-    border-radius: 15px;
-
-    color: #604b12;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   RESULTS ACTIONS
-========================================================= */
-
-.results-actions {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 30px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.site-footer {
-    width: min(1180px, calc(100% - 40px));
-
-    margin: 0 auto;
-
-    padding: 28px 0 35px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 20px;
-
-    color: #a1a1a6;
-
-    border-top: 1px solid rgba(0, 0, 0, 0.07);
-
-    font-size: 11px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   FOCUS ACCESSIBILITY
-========================================================= */
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-    outline: 3px solid rgba(0, 113, 227, 0.28);
-
-    outline-offset: 3px;
-}
-
-
-/* =========================================================
-   RESPONSIVE — TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .app-container {
-        padding-top: 50px;
-    }
-
-    .domain-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .domain-card {
-        min-height: 190px;
-    }
-
-    .stats-grid {
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-    }
-
-    .stat-card:last-child {
-        grid-column: span 3;
-    }
-
-    .question-card {
-        padding: 32px;
-    }
+    doc.text(
+        labelLines,
+        x + 6,
+        y + 17
+    );
 
 }
 
 
 /* =========================================================
-   RESPONSIVE — MOBILE
+   TABLEAU DE BORD PDF
 ========================================================= */
 
-@media (max-width: 650px) {
+function addPDFDashboard(
+    doc,
+    entries,
+    y
+) {
 
-    .topbar-inner {
-        width: min(100% - 28px, 1180px);
+    const total =
+        entries.length;
 
-        min-height: 64px;
-    }
 
-    .header-title {
-        display: none;
-    }
+    const yes =
+        entries.filter(
+            item =>
+                item.key === "oui"
+        ).length;
 
-    .app-container {
-        width: calc(100% - 28px);
 
-        padding-top: 38px;
-        padding-bottom: 55px;
-    }
+    const verify =
+        entries.filter(
+            item =>
+                item.key === "verification"
+        ).length;
 
-    .hero {
-        margin-bottom: 40px;
-    }
 
-    .hero h1 {
-        font-size: 39px;
+    const no =
+        entries.filter(
+            item =>
+                item.key === "non"
+        ).length;
 
-        letter-spacing: -0.045em;
-    }
 
-    .hero-text {
-        font-size: 16px;
-    }
+    const na =
+        entries.filter(
+            item =>
+                item.key === "non-concerne"
+        ).length;
 
-    .identification-card {
-        padding: 24px;
 
-        margin-bottom: 42px;
-    }
+    y = ensurePDFSpace(
+        doc,
+        y,
+        61,
+        "Tableau de bord"
+    );
 
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .section-heading h2 {
-        font-size: 24px;
-    }
+    const startX = 18;
 
-    .domain-card {
-        min-height: 185px;
+    const gap = 3;
 
-        padding: 23px;
-    }
+    const totalWidth = 174;
 
-    .domain-icon {
-        margin-bottom: 22px;
-    }
+    const cardWidth =
+        (
+            totalWidth -
+            (gap * 4)
+        ) / 5;
 
-    .information-card {
-        padding: 18px;
-    }
 
-    .diagnostic-top {
-        align-items: flex-start;
+    addPDFStatCard(
+        doc,
+        startX,
+        y,
+        cardWidth,
+        total,
+        "Points",
+        PDF_COLORS.text
+    );
 
-        gap: 14px;
-    }
 
-    .back-button span {
-        display: none;
-    }
+    addPDFStatCard(
+        doc,
+        startX +
+        cardWidth +
+        gap,
+        y,
+        cardWidth,
+        yes,
+        "Oui",
+        PDF_COLORS.green
+    );
 
-    .question-card {
-        padding: 25px 20px;
 
-        border-radius: 22px;
-    }
+    addPDFStatCard(
+        doc,
+        startX +
+        (
+            cardWidth +
+            gap
+        ) * 2,
+        y,
+        cardWidth,
+        verify,
+        "À vérifier",
+        PDF_COLORS.yellow
+    );
 
-    .question-card h1 {
-        font-size: 29px;
-    }
 
-    .question-text {
-        font-size: 16px;
-    }
+    addPDFStatCard(
+        doc,
+        startX +
+        (
+            cardWidth +
+            gap
+        ) * 3,
+        y,
+        cardWidth,
+        no,
+        "Non",
+        PDF_COLORS.red
+    );
 
-    .question-number {
-        margin-bottom: 8px;
-    }
 
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+    addPDFStatCard(
+        doc,
+        startX +
+        (
+            cardWidth +
+            gap
+        ) * 4,
+        y,
+        cardWidth,
+        na,
+        "Non concerné",
+        PDF_COLORS.gray
+    );
 
-        gap: 10px;
-    }
 
-    .stat-card {
-        min-height: 115px;
-
-        padding: 18px;
-    }
-
-    .stat-card:last-child {
-        grid-column: span 2;
-    }
-
-    .stat-value {
-        font-size: 29px;
-    }
-
-    .results-card,
-    .actions-card {
-        padding: 23px;
-    }
-
-    .results-actions {
-        flex-direction: column;
-
-        width: 100%;
-    }
-
-    .results-actions button {
-        width: 100%;
-    }
-
-    .site-footer {
-        width: calc(100% - 28px);
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding-top: 23px;
-    }
+    return y + 34;
 
 }
 
 
 /* =========================================================
-   VERY SMALL SCREENS
+   BADGE DE RÉPONSE PDF
 ========================================================= */
 
-@media (max-width: 390px) {
+function addPDFAnswerBadge(
+    doc,
+    key,
+    label,
+    x,
+    y
+) {
 
-    .hero h1 {
-        font-size: 34px;
-    }
+    const colors =
+        getPDFAnswerColors(
+            key
+        );
 
-    .question-card h1 {
-        font-size: 26px;
-    }
 
-    .domain-label {
-        font-size: 17px;
-    }
+    const cleanLabel =
+        cleanPDFText(label);
 
-    .primary-button,
-    .secondary-button {
-        width: 100%;
-    }
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(7.5);
+
+
+    const textWidth =
+        doc.getTextWidth(
+            cleanLabel
+        );
+
+
+    const width =
+        Math.min(
+            Math.max(
+                textWidth + 8,
+                23
+            ),
+            50
+        );
+
+
+    doc.setFillColor(
+        ...colors.background
+    );
+
+
+    doc.roundedRect(
+        x,
+        y,
+        width,
+        8,
+        2,
+        2,
+        "F"
+    );
+
+
+    doc.setTextColor(
+        ...colors.text
+    );
+
+
+    doc.text(
+        cleanLabel,
+        x + 4,
+        y + 5.4
+    );
+
+
+    return width;
 
 }
-```
+
+
+/* =========================================================
+   UNE RÉPONSE DANS LA SYNTHÈSE
+========================================================= */
+
+function addPDFSummaryAnswer(
+    doc,
+    answer,
+    y
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    const contentWidth =
+        pageWidth - 36;
+
+
+    const domainColor =
+        getPDFDomainColor(
+            answer.domaine
+        );
+
+
+    const title =
+        cleanPDFText(
+            answer.titre
+        );
+
+
+    const question =
+        cleanPDFText(
+            answer.question
+        );
+
+
+    const titleLines =
+        doc.splitTextToSize(
+            title,
+            contentWidth - 16
+        );
+
+
+    const questionLines =
+        doc.splitTextToSize(
+            question,
+            contentWidth - 16
+        );
+
+
+    const estimatedHeight =
+        24 +
+        (
+            titleLines.length *
+            4.3
+        ) +
+        (
+            questionLines.length *
+            4
+        );
+
+
+    y = ensurePDFSpace(
+        doc,
+        y,
+        estimatedHeight,
+        "Synthèse des réponses"
+    );
+
+
+    const boxHeight =
+        Math.max(
+            31,
+            estimatedHeight
+        );
+
+
+    doc.setFillColor(
+        249,
+        249,
+        251
+    );
+
+
+    doc.roundedRect(
+        18,
+        y,
+        contentWidth,
+        boxHeight,
+        2.5,
+        2.5,
+        "F"
+    );
+
+
+    /* ---------------------------------------------
+       TRAIT DE COULEUR
+    --------------------------------------------- */
+
+    doc.setFillColor(
+        ...domainColor
+    );
+
+
+    doc.roundedRect(
+        18,
+        y,
+        3,
+        boxHeight,
+        1.5,
+        1.5,
+        "F"
+    );
+
+
+    /* ---------------------------------------------
+       DIRECTIVE
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(7);
+
+
+    doc.setTextColor(
+        ...domainColor
+    );
+
+
+    doc.text(
+        cleanPDFText(
+            answer.domaineLabel
+        ).toUpperCase(),
+        26,
+        y + 7
+    );
+
+
+    /* ---------------------------------------------
+       TITRE DU POINT
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(9.5);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.text
+    );
+
+
+    doc.text(
+        titleLines,
+        26,
+        y + 13
+    );
+
+
+    let contentY =
+        y +
+        13 +
+        (
+            titleLines.length *
+            4.3
+        );
+
+
+    /* ---------------------------------------------
+       INTITULÉ DE LA QUESTION
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.secondary
+    );
+
+
+    doc.text(
+        questionLines,
+        26,
+        contentY + 2
+    );
+
+
+    contentY +=
+        4 +
+        (
+            questionLines.length *
+            4
+        );
+
+
+    /* ---------------------------------------------
+       RÉPONSE
+    --------------------------------------------- */
+
+    const shortLabel =
+        getShortAnswerLabel(
+            answer
+        );
+
+
+    addPDFAnswerBadge(
+        doc,
+        answer.key,
+        shortLabel,
+        26,
+        contentY
+    );
+
+
+    return y + boxHeight + 4;
+
+}
+
+
+/* =========================================================
+   SYNTHÈSE DES RÉPONSES PDF
+========================================================= */
+
+function addPDFSummary(
+    doc,
+    entries,
+    y
+) {
+
+    if (
+        !entries ||
+        entries.length === 0
+    ) {
+
+        doc.setFont(
+            "helvetica",
+            "normal"
+        );
+
+
+        doc.setFontSize(9);
+
+
+        doc.setTextColor(
+            ...PDF_COLORS.secondary
+        );
+
+
+        doc.text(
+            "Aucune réponse enregistrée.",
+            18,
+            y
+        );
+
+
+        return y + 10;
+
+    }
+
+
+    entries.forEach(answer => {
+
+        y = addPDFSummaryAnswer(
+            doc,
+            answer,
+            y
+        );
+
+    });
+
+
+    return y;
+
+}
+
+
+/* =========================================================
+   UN POINT À VÉRIFIER
+========================================================= */
+
+function addPDFActionItem(
+    doc,
+    answer,
+    y
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    const contentWidth =
+        pageWidth - 36;
+
+
+    const isNo =
+        answer.key === "non";
+
+
+    const background =
+        isNo
+            ? PDF_COLORS.redLight
+            : PDF_COLORS.yellowLight;
+
+
+    const textColor =
+        isNo
+            ? PDF_COLORS.red
+            : PDF_COLORS.yellow;
+
+
+    const titleLines =
+        doc.splitTextToSize(
+            cleanPDFText(
+                answer.titre
+            ),
+            contentWidth - 16
+        );
+
+
+    const questionLines =
+        doc.splitTextToSize(
+            cleanPDFText(
+                answer.question
+            ),
+            contentWidth - 16
+        );
+
+
+    const height =
+        Math.max(
+            29,
+            20 +
+            (
+                titleLines.length *
+                4.2
+            ) +
+            (
+                questionLines.length *
+                3.8
+            )
+        );
+
+
+    y = ensurePDFSpace(
+        doc,
+        y,
+        height + 4,
+        "Points à vérifier"
+    );
+
+
+    doc.setFillColor(
+        ...background
+    );
+
+
+    doc.roundedRect(
+        18,
+        y,
+        contentWidth,
+        height,
+        2.5,
+        2.5,
+        "F"
+    );
+
+
+    /* ---------------------------------------------
+       STATUT
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(7);
+
+
+    doc.setTextColor(
+        ...textColor
+    );
+
+
+    doc.text(
+        isNo
+            ? "NON"
+            : "À VÉRIFIER",
+        25,
+        y + 7
+    );
+
+
+    /* ---------------------------------------------
+       TITRE
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(9.5);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.text
+    );
+
+
+    doc.text(
+        titleLines,
+        25,
+        y + 13
+    );
+
+
+    let textY =
+        y +
+        13 +
+        (
+            titleLines.length *
+            4.2
+        );
+
+
+    /* ---------------------------------------------
+       QUESTION
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.secondary
+    );
+
+
+    doc.text(
+        questionLines,
+        25,
+        textY + 2
+    );
+
+
+    return y + height + 4;
+
+}
+
+
+/* =========================================================
+   POINTS À VÉRIFIER PDF
+========================================================= */
+
+function addPDFActions(
+    doc,
+    entries,
+    y
+) {
+
+    const actions =
+        getActionEntries(
+            entries
+        );
+
+
+    if (
+        actions.length === 0
+    ) {
+
+        y = ensurePDFSpace(
+            doc,
+            y,
+            27,
+            "Points à vérifier"
+        );
+
+
+        doc.setFillColor(
+            ...PDF_COLORS.greenLight
+        );
+
+
+        doc.roundedRect(
+            18,
+            y,
+            174,
+            21,
+            2.5,
+            2.5,
+            "F"
+        );
+
+
+        doc.setFont(
+            "helvetica",
+            "bold"
+        );
+
+
+        doc.setFontSize(8.5);
+
+
+        doc.setTextColor(
+            ...PDF_COLORS.green
+        );
+
+
+        doc.text(
+            "Aucun point particulier identifié comme nécessitant une vérification.",
+            24,
+            y + 9
+        );
+
+
+        doc.setFont(
+            "helvetica",
+            "normal"
+        );
+
+
+        doc.setFontSize(7.5);
+
+
+        doc.setTextColor(
+            ...PDF_COLORS.secondary
+        );
+
+
+        doc.text(
+            "Cette synthèse dépend uniquement des réponses renseignées dans l'autodiagnostic.",
+            24,
+            y + 15
+        );
+
+
+        return y + 29;
+
+    }
+
+
+    actions.forEach(answer => {
+
+        y = addPDFActionItem(
+            doc,
+            answer,
+            y
+        );
+
+    });
+
+
+    return y;
+
+}
+
+
+/* =========================================================
+   PAGE DE GARDE / EN-TÊTE PRINCIPAL
+========================================================= */
+
+function addPDFMainHeader(
+    doc
+) {
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    /* ---------------------------------------------
+       PETIT LABEL
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.blue
+    );
+
+
+    doc.text(
+        "PAC · CONDITIONNALITÉ ENVIRONNEMENTALE",
+        18,
+        20
+    );
+
+
+    /* ---------------------------------------------
+       TITRE
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(22);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.text
+    );
+
+
+    doc.text(
+        "Contrôle conditionnalité PAC",
+        18,
+        33
+    );
+
+
+    doc.setFontSize(16);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.secondary
+    );
+
+
+    doc.text(
+        "Volet Environnement",
+        18,
+        42
+    );
+
+
+    /* ---------------------------------------------
+       HAUTE-GARONNE
+    --------------------------------------------- */
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(9);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.muted
+    );
+
+
+    doc.text(
+        "Haute-Garonne · Campagne 2026",
+        18,
+        51
+    );
+
+
+    /* ---------------------------------------------
+       TRAIT
+    --------------------------------------------- */
+
+    doc.setDrawColor(
+        ...PDF_COLORS.line
+    );
+
+
+    doc.setLineWidth(0.3);
+
+
+    doc.line(
+        18,
+        58,
+        pageWidth - 18,
+        58
+    );
+
+
+    return 68;
+
+}
+
+
+/* =========================================================
+   NOTE D'INFORMATION PDF
+========================================================= */
+
+function addPDFDisclaimer(
+    doc,
+    y
+) {
+
+    y = ensurePDFSpace(
+        doc,
+        y,
+        34,
+        "Information"
+    );
+
+
+    doc.setFillColor(
+        245,
+        247,
+        250
+    );
+
+
+    doc.roundedRect(
+        18,
+        y,
+        174,
+        26,
+        2.5,
+        2.5,
+        "F"
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.text
+    );
+
+
+    doc.text(
+        "À propos de ce document",
+        24,
+        y + 8
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(7.5);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.secondary
+    );
+
+
+    const text =
+        "Ce document constitue une synthèse de l'autodiagnostic renseigné. Il permet d'identifier des points nécessitant une vérification et ne constitue pas une attestation de conformité.";
+
+
+    const lines =
+        doc.splitTextToSize(
+            text,
+            160
+        );
+
+
+    doc.text(
+        lines,
+        24,
+        y + 14
+    );
+
+
+    return y + 34;
+
+}
+
+
+/* =========================================================
+   DATE DU DOCUMENT
+========================================================= */
+
+function getPDFDate() {
+
+    const now =
+        new Date();
+
+
+    return now.toLocaleDateString(
+        "fr-FR",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   NOM DU FICHIER PDF
+========================================================= */
+
+function getPDFFileName() {
+
+    let farmName =
+        getFarmName();
+
+
+    if (!farmName) {
+
+        farmName =
+            getOperatorName();
+
+    }
+
+
+    if (!farmName) {
+
+        farmName =
+            "exploitation";
+
+    }
+
+
+    /*
+       Nettoyage pour obtenir un nom de fichier
+       compatible.
+    */
+
+    const safeName =
+        farmName
+            .normalize("NFD")
+            .replace(
+                /[\u0300-\u036f]/g,
+                ""
+            )
+            .replace(
+                /[^a-zA-Z0-9-_ ]/g,
+                ""
+            )
+            .trim()
+            .replace(
+                /\s+/g,
+                "-"
+            )
+            .toLowerCase();
+
+
+    return (
+        "controle-conditionnalite-pac-environnement-" +
+        safeName +
+        "-2026.pdf"
+    );
+
+}
+
+
+/* =========================================================
+   GÉNÉRATION DU PDF
+========================================================= */
+
+function generatePDF() {
+
+    /* -----------------------------------------------------
+       VÉRIFICATION JSPDF
+    ----------------------------------------------------- */
+
+    if (
+        !window.jspdf ||
+        !window.jspdf.jsPDF
+    ) {
+
+        alert(
+            "La bibliothèque de génération PDF n'a pas pu être chargée."
+        );
+
+        return;
+
+    }
+
+
+    const {
+        jsPDF
+    } = window.jspdf;
+
+
+    const doc =
+        new jsPDF({
+
+            orientation:
+                "portrait",
+
+            unit:
+                "mm",
+
+            format:
+                "a4"
+
+        });
+
+
+    /* -----------------------------------------------------
+       DONNÉES
+    ----------------------------------------------------- */
+
+    const entries =
+        sortAnswerEntries(
+            getAnswerEntries()
+        );
+
+
+    let y =
+        addPDFMainHeader(
+            doc
+        );
+
+
+    /* =====================================================
+       IDENTIFICATION
+    ====================================================== */
+
+    y = addPDFSectionTitle(
+        doc,
+        "IDENTIFICATION",
+        y
+    );
+
+
+    y = addPDFIdentification(
+        doc,
+        y
+    );
+
+
+    /* =====================================================
+       ORIENTATION
+    ====================================================== */
+
+    y = addPDFSectionTitle(
+        doc,
+        "ORIENTATION",
+        y
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(8);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.secondary
+    );
+
+
+    doc.text(
+        "Directives identifiées à partir des réponses renseignées :",
+        18,
+        y
+    );
+
+
+    y += 6;
+
+
+    y = addPDFOrientation(
+        doc,
+        y
+    );
+
+
+    /* =====================================================
+       TABLEAU DE BORD
+    ====================================================== */
+
+    y = addPDFSectionTitle(
+        doc,
+        "TABLEAU DE BORD",
+        y
+    );
+
+
+    y = addPDFDashboard(
+        doc,
+        entries,
+        y
+    );
+
+
+    /* =====================================================
+       DATE DE GÉNÉRATION
+    ====================================================== */
+
+    y = ensurePDFSpace(
+        doc,
+        y,
+        14,
+        "Tableau de bord"
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.setFontSize(7.5);
+
+
+    doc.setTextColor(
+        ...PDF_COLORS.muted
+    );
+
+
+    doc.text(
+        `Document généré le ${getPDFDate()}`,
+        18,
+        y
+    );
+
+
+    y += 10;
+
+
+    /* =====================================================
+       SYNTHÈSE DES RÉPONSES
+    ====================================================== */
+
+    y = addPDFSectionTitle(
+        doc,
+        "SYNTHÈSE DES RÉPONSES",
+        y
+    );
+
+
+    y = addPDFSummary(
+        doc,
+        entries,
+        y
+    );
+
+
+    /* =====================================================
+       POINTS À VÉRIFIER
+    ====================================================== */
+
+    y = addPDFSectionTitle(
+        doc,
+        "POINTS À VÉRIFIER",
+        y + 4
+    );
+
+
+    y = addPDFActions(
+        doc,
+        entries,
+        y
+    );
+
+
+    /* =====================================================
+       NOTE DE FIN
+    ====================================================== */
+
+    y = addPDFDisclaimer(
+        doc,
+        y + 5
+    );
+
+
+    /* =====================================================
+       FOOTER SUR TOUTES LES PAGES
+    ====================================================== */
+
+    const pageCount =
+        doc.internal.getNumberOfPages();
+
+
+    for (
+        let page = 1;
+        page <= pageCount;
+        page++
+    ) {
+
+        doc.setPage(
+            page
+        );
+
+
+        addPDFFooter(
+            doc,
+            page
+        );
+
+    }
+
+
+    /* =====================================================
+       ENREGISTREMENT
+    ====================================================== */
+
+    doc.save(
+        getPDFFileName()
+    );
+
+}
+
+
+/* =========================================================
+   IMPORTANT
+
+   L'ANCIENNE ANNEXE N'EST PLUS GÉNÉRÉE.
+
+   Il n'y a volontairement aucune fonction :
+
+   addPDFAnnex()
+   addPDFDetailedQuestion()
+
+   et aucun bloc :
+
+   "ANNEXE — DÉTAIL DES RÉPONSES"
+
+   Les réponses apparaissent UNE SEULE FOIS dans :
+
+   SYNTHÈSE DES RÉPONSES
+
+   avec :
+   - la directive
+   - le titre du point de contrôle
+   - l'intitulé de la question
+   - la réponse en couleur
+
+   Les emojis sont également absents du PDF.
+========================================================= */
+
+
+/* =========================================================
+   FIN DU SCRIPT
+========================================================= */

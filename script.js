@@ -1,11 +1,11 @@
 /* =========================================================
-   CONDITIONNALITÉ 31 · 2026
-   AUTODIAGNOSTIC ENVIRONNEMENTAL
+   CONDITIONNALITÉ 31
+   Diagnostic environnemental · Haute-Garonne · 2026
 ========================================================= */
 
 
 /* =========================================================
-   FICHES RÉGLEMENTAIRES
+   FICHES PDF
 ========================================================= */
 
 const FICHES = {
@@ -13,41 +13,36 @@ const FICHES = {
     eau:
         "Conditionnalite-2026_fiche-technique_environnement-1_directive_cadre_eau.pdf",
 
-    nitrates:
-        "Conditionnalite-2026_fiche-technique_environnement-2_nitrates.pdf",
-
     oiseaux:
         "Conditionnalite-2026_fiche-technique_environnement-3_oiseaux_sauvages-habitats.pdf",
 
+    nitrates:
+        "Conditionnalite-2026_fiche-technique_environnement-2_nitrates.pdf",
 
-    /* Fiches mesures nitrates */
-
-    nitratesMesure1:
+    mesure1:
         "fichemesure1_2025_vf2-7.pdf",
 
-    nitratesMesure2:
+    mesure2:
         "fichemesure2_2024_vf-5.pdf",
 
-    nitratesMesure3:
+    mesure3:
         "fichemesure3_2025_vf-4.pdf",
 
-    nitratesMesure4:
+    mesure4:
         "fichemesure4_2025_vf-7.pdf",
 
-    nitratesMesure5:
+    mesure5:
         "fichemesure5_2024_vf-4.pdf",
 
-    nitratesMesure6:
+    mesure6:
         "fichemesure6_2024_vf-1.pdf",
 
-    nitratesMesure7:
+    mesure7:
         "fichemesure7_2025_vf-4.pdf",
 
-    nitratesMesure8:
+    mesure8:
         "fichemesure8_2024_vf-2.pdf"
-
 };
-
 
 
 /* =========================================================
@@ -56,21 +51,25 @@ const FICHES = {
 
 const questions = [
 
-    /* =====================================================
-       DIRECTIVE CADRE SUR L'EAU
-    ====================================================== */
+    /* =========================
+       EAU
+    ========================== */
 
     {
         id: 1,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Prélèvement pour l’irrigation",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -79,31 +78,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je n’irrigue pas",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
             "Vérifier que le document autorisant le prélèvement est disponible et à jour.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
@@ -111,13 +109,17 @@ const questions = [
         id: 2,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Évaluation des volumes prélevés",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -126,31 +128,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je n’irrigue pas",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
             "Vérifier la présence et le fonctionnement du dispositif permettant de mesurer les volumes prélevés.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
@@ -158,13 +159,18 @@ const questions = [
         id: 3,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
-        titre: "Protection des eaux souterraines contre les pollutions",
+        titre:
+            "Protection des eaux souterraines contre les pollutions",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -173,30 +179,28 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
-
-        action:
-            "Vérifier les conditions de stockage et de manipulation des produits et substances susceptibles de polluer les eaux souterraines.",
 
         remarque:
             "Le contrôleur peut vérifier ce point directement sur l’exploitation le jour du contrôle.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        action:
+            "Vérifier les conditions de stockage et l’absence de rejets directs susceptibles de polluer les eaux souterraines.",
+
+        fiche: FICHES.eau
     },
 
 
@@ -204,13 +208,17 @@ const questions = [
         id: 4,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Stockage des effluents d’élevage",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -219,31 +227,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je ne stocke pas d’effluents d’élevage",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier les distances entre les installations de stockage et les points d’eau concernés.",
+            "Vérifier les distances applicables autour des installations de stockage.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
@@ -251,57 +258,56 @@ const questions = [
         id: 5,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
-        titre: "Prévention des retours et débordements lors du remplissage du pulvérisateur",
+        titre:
+            "Prévention des retours et débordements lors du remplissage du pulvérisateur",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
             "Lors du remplissage du pulvérisateur, disposez-vous d’au moins un dispositif permettant de prévenir le retour de produits vers le réseau d’eau et de limiter les risques de débordement ?",
 
-        exemples: [
-            "Clapet anti-retour",
-            "Potence",
-            "Cuve intermédiaire ou de pré-stockage",
-            "Volucompteur à arrêt automatique",
-            "Autre dispositif équivalent"
-        ],
+        exemples:
+            "Clapet anti-retour ; potence ; cuve intermédiaire ou de pré-stockage ; volucompteur à arrêt automatique ; autre dispositif équivalent.",
 
         reponses: [
             {
                 label: "Oui, je dispose d’au moins un dispositif adapté",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je n’utilise pas de produits phytopharmaceutiques",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
-
-        action:
-            "Vérifier la présence d’au moins un dispositif adapté lors du remplissage du pulvérisateur.",
 
         remarque:
             "La simple présence de l’exploitant lors du remplissage ne constitue pas, à elle seule, un dispositif de prévention du débordement ou du retour de produits.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        action:
+            "Identifier le dispositif réellement utilisé lors du remplissage du pulvérisateur.",
+
+        fiche: FICHES.eau
     },
 
 
@@ -309,52 +315,52 @@ const questions = [
         id: 6,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Lavage du pulvérisateur",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
             "Lorsque le lavage du pulvérisateur n’est pas réalisé au champ, disposez-vous d’un dispositif permettant de récupérer les effluents issus du lavage ?",
 
-        exemples: [
-            "Aire ou bâche adaptée",
-            "Bac récupérateur",
-            "Autre dispositif permettant de récupérer les effluents"
-        ],
+        exemples:
+            "Aire ou bâche adaptée ; bac récupérateur ; autre dispositif permettant de récupérer les effluents.",
 
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je fais appel à une entreprise de travaux agricoles ou je n’utilise pas de produits phytopharmaceutiques",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier que les effluents issus du lavage sont récupérés lorsque le lavage n’est pas réalisé au champ.",
+            "Vérifier le dispositif de récupération des effluents lorsque le lavage est réalisé hors du champ.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
@@ -362,13 +368,17 @@ const questions = [
         id: 7,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Stockage des produits phytopharmaceutiques",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -377,31 +387,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je n’utilise pas de produits phytopharmaceutiques",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier que les produits phytopharmaceutiques sont stockés dans un espace dédié.",
+            "Vérifier l’espace dédié au stockage des produits phytopharmaceutiques.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
@@ -409,13 +418,17 @@ const questions = [
         id: 8,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Composés phosphorés – Exploitations ICPE",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -424,31 +437,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Mon exploitation n’est pas concernée par cette obligation",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier la présence et la tenue du CEP lorsque cette obligation s’applique.",
+            "Vérifier que le CEP est disponible lorsque l’obligation s’applique.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
@@ -456,13 +468,17 @@ const questions = [
         id: 9,
 
         domaine: "eau",
-        domaineLabel: "Directive cadre sur l’eau",
-        domaineIcon: "💧",
+
+        domaineLabel: "Directive cadre sur l'eau",
+
+        domaineIcon: "EAU",
+
         domaineClass: "water",
 
         titre: "Bilan de matières – Exploitations ICPE",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -471,49 +487,52 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Mon exploitation n’est pas concernée par cette obligation",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier la réalisation et la disponibilité du bilan de matières lorsque cette obligation s’applique.",
+            "Vérifier le bilan de matières lorsque l’obligation s’applique.",
 
-        fiches: [
-            {
-                label: "Fiche directive cadre sur l’eau",
-                url: FICHES.eau
-            }
-        ]
+        fiche: FICHES.eau
     },
 
 
-    /* =====================================================
-       DIRECTIVE OISEAUX ET HABITATS
-    ====================================================== */
+    /* =========================
+       OISEAUX / HABITATS
+    ========================== */
 
     {
         id: 10,
 
         domaine: "oiseaux",
+
         domaineLabel: "Directive oiseaux et habitats",
-        domaineIcon: "🐦",
+
+        domaineIcon: "OISEAUX",
+
         domaineClass: "birds",
 
         titre: "Taille et coupe des arbres et des haies",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -522,27 +541,25 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
 
         action:
-            "Vérifier les dates des interventions réalisées ou prévues sur les arbres et les haies.",
+            "Vérifier les dates des interventions réalisées sur les arbres et les haies.",
 
-        fiches: [
-            {
-                label: "Fiche oiseaux et habitats",
-                url: FICHES.oiseaux
-            }
-        ]
+        fiche: FICHES.oiseaux
     },
 
 
@@ -550,13 +567,17 @@ const questions = [
         id: 11,
 
         domaine: "oiseaux",
+
         domaineLabel: "Directive oiseaux et habitats",
-        domaineIcon: "🐦",
+
+        domaineIcon: "OISEAUX",
+
         domaineClass: "birds",
 
         titre: "Écobuage",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -565,27 +586,25 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
 
         action:
-            "Vérifier la réglementation applicable à votre situation et l’existence d’une éventuelle dérogation préfectorale.",
+            "Vérifier les conditions applicables à la pratique de l’écobuage et les éventuelles autorisations nécessaires.",
 
-        fiches: [
-            {
-                label: "Fiche oiseaux et habitats",
-                url: FICHES.oiseaux
-            }
-        ]
+        fiche: FICHES.oiseaux
     },
 
 
@@ -593,13 +612,18 @@ const questions = [
         id: 12,
 
         domaine: "oiseaux",
+
         domaineLabel: "Directive oiseaux et habitats",
-        domaineIcon: "🐦",
+
+        domaineIcon: "OISEAUX",
+
         domaineClass: "birds",
 
-        titre: "Protection des habitats des espèces d’oiseaux protégées",
+        titre:
+            "Protection des habitats des espèces d’oiseaux protégées",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -608,31 +632,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Aucune espèce protégée n’est répertoriée comme concernée sur mon exploitation",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier les habitats et les éventuelles espèces protégées concernées sur l’exploitation.",
+            "Vérifier les enjeux liés aux habitats d’espèces protégées présents sur l’exploitation.",
 
-        fiches: [
-            {
-                label: "Fiche oiseaux et habitats",
-                url: FICHES.oiseaux
-            }
-        ]
+        fiche: FICHES.oiseaux
     },
 
 
@@ -640,13 +663,17 @@ const questions = [
         id: 13,
 
         domaine: "oiseaux",
+
         domaineLabel: "Directive oiseaux et habitats",
-        domaineIcon: "🐦",
+
+        domaineIcon: "OISEAUX",
+
         domaineClass: "birds",
 
         titre: "Sites Natura 2000",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -655,49 +682,52 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Mon exploitation n’est pas concernée par un site Natura 2000",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier si l’exploitation est concernée par un site Natura 2000 et si les interventions prévues peuvent l’affecter.",
+            "Vérifier si les parcelles ou travaux concernés se situent dans le périmètre d’un site Natura 2000.",
 
-        fiches: [
-            {
-                label: "Fiche oiseaux et habitats",
-                url: FICHES.oiseaux
-            }
-        ]
+        fiche: FICHES.oiseaux
     },
 
 
-    /* =====================================================
-       DIRECTIVE NITRATES
-    ====================================================== */
+    /* =========================
+       NITRATES
+    ========================== */
 
     {
         id: 14,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Périodes d’interdiction d’épandage",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -706,38 +736,38 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
-
-        action:
-            "Vérifier les périodes d’interdiction d’épandage applicables à votre situation.",
 
         remarque:
             "Consultez le document présentant les périodes d’interdiction d’épandage applicables à votre situation.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 1 · Périodes d’épandage",
-                url: FICHES.nitratesMesure1
-            }
-        ]
+        action:
+            "Vérifier les périodes d’interdiction applicables aux fertilisants utilisés.",
+
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure1,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 1 — Périodes d’interdiction d’épandage"
     },
 
 
@@ -745,13 +775,17 @@ const questions = [
         id: 15,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Capacités de stockage des effluents d’élevage",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative et justificatifs",
 
         question:
@@ -760,35 +794,35 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je ne produis et ne stocke pas d’effluents d’élevage",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier l’étanchéité et la capacité des installations de stockage des effluents d’élevage.",
+            "Vérifier l’étanchéité et la capacité des installations de stockage.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 2 · Stockage",
-                url: FICHES.nitratesMesure2
-            }
-        ]
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure2,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 2 — Capacités de stockage"
     },
 
 
@@ -796,13 +830,17 @@ const questions = [
         id: 16,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Équilibre de la fertilisation azotée – PPF et CEP",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -811,34 +849,33 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
-
-        action:
-            "Vérifier que le PPF et le CEP sont disponibles et correctement renseignés.",
 
         remarque:
             "Même si vous ne réalisez aucun épandage, vous devez tenir à jour un PPF et un CEP lorsque vous êtes concerné par cette obligation. Dans ce cas, renseignez les îlots et les parcelles sur lesquels aucun épandage n’est réalisé.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 3 · PPF et CEP",
-                url: FICHES.nitratesMesure3
-            }
-        ]
+        action:
+            "Vérifier la présence et la mise à jour du PPF et du CEP.",
+
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure3,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 3 — PPF et CEP"
     },
 
 
@@ -846,13 +883,17 @@ const questions = [
         id: 17,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Respect des doses d’azote",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -861,31 +902,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
 
         action:
-            "Vérifier les doses prévues dans le PPF et leur conformité avec les règles applicables.",
+            "Vérifier les doses prévues dans le PPF et leur cohérence avec les règles applicables.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 4 · Doses d’azote",
-                url: FICHES.nitratesMesure4
-            }
-        ]
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure4,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 4 — Respect des doses d’azote"
     },
 
 
@@ -893,13 +933,17 @@ const questions = [
         id: 18,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Analyse de sol",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -908,27 +952,25 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
 
         action:
-            "Vérifier que les analyses de sol requises sont disponibles.",
+            "Vérifier que les analyses de sol requises sont disponibles et correspondent aux situations concernées.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            }
-        ]
+        fiche: FICHES.nitrates
     },
 
 
@@ -936,13 +978,17 @@ const questions = [
         id: 19,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Plafond de 170 kg d’azote par hectare",
 
         type: "administratif",
+
         typeLabel: "Vérification administrative",
 
         question:
@@ -951,35 +997,35 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             },
             {
                 label: "Non concerné — Je n’utilise pas d’effluents d’élevage, qu’ils soient produits sur mon exploitation ou provenant d’une autre exploitation",
-                status: "non-concerne"
+                status: "non-concerne",
+                class: "na"
             }
         ],
 
         action:
-            "Vérifier les quantités d’azote apportées par les effluents d’élevage par rapport à la SAU concernée.",
+            "Vérifier les quantités d’azote apportées par les effluents d’élevage et le plafond applicable.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 5 · 170 kg N/ha",
-                url: FICHES.nitratesMesure5
-            }
-        ]
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure5,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 5 — Plafond de 170 kg d’azote par hectare"
     },
 
 
@@ -987,13 +1033,17 @@ const questions = [
         id: 20,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Conditions particulières d’épandage",
 
-        type: "terrain",
+        type: "mixte",
+
         typeLabel: "Contrôle sur place et vérification administrative",
 
         question:
@@ -1002,31 +1052,30 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
 
         action:
-            "Vérifier les conditions applicables aux épandages et les distances à respecter à proximité des cours d’eau.",
+            "Vérifier les conditions applicables aux épandages selon les caractéristiques des sols et la proximité des cours d’eau.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 6 · Conditions d’épandage",
-                url: FICHES.nitratesMesure6
-            }
-        ]
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure6,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 6 — Conditions particulières d’épandage"
     },
 
 
@@ -1034,13 +1083,17 @@ const questions = [
         id: 21,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Couverture des sols",
 
-        type: "terrain",
+        type: "mixte",
+
         typeLabel: "Contrôle sur place et vérification administrative",
 
         question:
@@ -1049,34 +1102,33 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
-
-        action:
-            "Vérifier les types de couverts utilisés ainsi que leurs dates d’implantation, de maintien et de destruction.",
 
         remarque:
             "Consultez la fiche dédiée à la couverture des sols pour connaître les couverts autorisés et les règles applicables à leur implantation et à leur destruction.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 7 · Couverture des sols",
-                url: FICHES.nitratesMesure7
-            }
-        ]
+        action:
+            "Vérifier les dates d’implantation, de maintien et de destruction des couverts.",
+
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure7,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 7 — Couverture des sols"
     },
 
 
@@ -1084,13 +1136,17 @@ const questions = [
         id: 22,
 
         domaine: "nitrates",
+
         domaineLabel: "Directive nitrates",
-        domaineIcon: "🌱",
+
+        domaineIcon: "NITRATES",
+
         domaineClass: "nitrates",
 
         titre: "Bande tampon le long des cours d’eau",
 
         type: "terrain",
+
         typeLabel: "Contrôle sur place",
 
         question:
@@ -1099,35 +1155,33 @@ const questions = [
         reponses: [
             {
                 label: "Oui",
-                status: "verifie"
+                status: "verifie",
+                class: "yes"
             },
             {
                 label: "Non",
-                status: "action"
+                status: "action",
+                class: "no"
             },
             {
                 label: "Je dois vérifier",
-                status: "verification"
+                status: "verification",
+                class: "check"
             }
         ],
 
         action:
-            "Vérifier l’entretien de la bande tampon végétalisée le long des cours d’eau concernés.",
+            "Vérifier l’entretien et l’état de la bande tampon végétalisée.",
 
-        fiches: [
-            {
-                label: "Fiche directive nitrates",
-                url: FICHES.nitrates
-            },
-            {
-                label: "Fiche mesure 8 · Bande tampon",
-                url: FICHES.nitratesMesure8
-            }
-        ]
+        fiche: FICHES.nitrates,
+
+        ficheSupplementaire: FICHES.mesure8,
+
+        ficheSupplementaireLabel:
+            "Fiche mesure 8 — Bande tampon le long des cours d’eau"
     }
 
 ];
-
 
 
 /* =========================================================
@@ -1138,6 +1192,7 @@ let currentQuestionIndex = 0;
 
 let answers = [];
 
+
 const screens = {
     home: document.getElementById("homeScreen"),
     diagnostic: document.getElementById("diagnosticScreen"),
@@ -1146,19 +1201,20 @@ const screens = {
 };
 
 
-
 /* =========================================================
    NAVIGATION
 ========================================================= */
 
-function showScreen(screenName) {
+function showScreen(screenId) {
 
     Object.values(screens).forEach(screen => {
         screen.classList.remove("active");
     });
 
-    if (screens[screenName]) {
-        screens[screenName].classList.add("active");
+    const screen = document.getElementById(screenId);
+
+    if (screen) {
+        screen.classList.add("active");
     }
 
     window.scrollTo({
@@ -1168,43 +1224,31 @@ function showScreen(screenName) {
 }
 
 
-
-/* =========================================================
-   DÉMARRER
-========================================================= */
-
 function startDiagnostic() {
 
     currentQuestionIndex = 0;
+
     answers = [];
 
-    document.getElementById("questionTotal").textContent =
-        questions.length;
-
-    showScreen("diagnostic");
+    showScreen("diagnosticScreen");
 
     displayQuestion();
 }
 
 
-
-/* =========================================================
-   RECOMMENCER
-========================================================= */
-
 function restartDiagnostic() {
 
     currentQuestionIndex = 0;
+
     answers = [];
 
     document.getElementById("operatorName").value = "";
     document.getElementById("farmName").value = "";
 
-    showScreen("diagnostic");
+    showScreen("diagnosticScreen");
 
     displayQuestion();
 }
-
 
 
 /* =========================================================
@@ -1213,127 +1257,142 @@ function restartDiagnostic() {
 
 function displayQuestion() {
 
-    const question =
-        questions[currentQuestionIndex];
+    const question = questions[currentQuestionIndex];
 
-    if (!question) return;
-
-
-    /* Compteur */
-
-    document.getElementById("questionNumber").textContent =
-        currentQuestionIndex + 1;
-
-    document.getElementById("questionTotal").textContent =
-        questions.length;
+    if (!question) {
+        showResults();
+        return;
+    }
 
 
-    /* Progression */
+    const total = questions.length;
 
-    const progress =
-        ((currentQuestionIndex + 1) / questions.length) * 100;
+    const current = currentQuestionIndex + 1;
+
+    const percentage =
+        (current / total) * 100;
+
+
+    document.getElementById("questionCounter").textContent =
+        `Question ${current} / ${total}`;
+
 
     document.getElementById("progressBar").style.width =
-        `${progress}%`;
+        `${percentage}%`;
 
 
-    /* Domaine */
-
-    const domainBadge =
-        document.getElementById("domainBadge");
-
-    domainBadge.textContent =
-        `${question.domaineIcon} ${question.domaineLabel}`;
+    document.getElementById("questionNumber").textContent =
+        String(current).padStart(2, "0");
 
 
-    /* Type */
+    document.getElementById("domainBadge").textContent =
+        question.domaineLabel;
+
 
     document.getElementById("typeBadge").textContent =
         question.typeLabel;
 
 
-    /* Titre */
-
     document.getElementById("questionTitle").textContent =
         question.titre;
 
-
-    /* Question */
 
     document.getElementById("questionText").textContent =
         question.question;
 
 
-    /* =====================================================
-       EXEMPLES
-    ====================================================== */
+    /* EXEMPLES */
 
     const examplesContainer =
         document.getElementById("examplesContainer");
 
-    examplesContainer.innerHTML = "";
-
-    if (question.exemples && question.exemples.length > 0) {
-
-        const title =
-            document.createElement("strong");
-
-        title.textContent =
-            "Exemples : ";
-
-        examplesContainer.appendChild(title);
+    const examplesText =
+        document.getElementById("examplesText");
 
 
-        const text =
-            document.createElement("span");
-
-        text.textContent =
-            question.exemples.join(" · ");
-
-        examplesContainer.appendChild(text);
+    if (question.exemples) {
 
         examplesContainer.style.display = "block";
+
+        examplesText.textContent =
+            question.exemples;
 
     } else {
 
         examplesContainer.style.display = "none";
 
+        examplesText.textContent = "";
     }
 
 
-    /* =====================================================
-       REMARQUE
-    ====================================================== */
+    /* REMARQUE */
 
     const remarkContainer =
         document.getElementById("remarkContainer");
 
-    remarkContainer.innerHTML = "";
+    const remarkText =
+        document.getElementById("remarkText");
+
 
     if (question.remarque) {
 
-        remarkContainer.textContent =
-            question.remarque;
+        remarkContainer.style.display = "block";
 
-        remarkContainer.style.display =
-            "block";
+        remarkText.textContent =
+            question.remarque;
 
     } else {
 
-        remarkContainer.style.display =
-            "none";
+        remarkContainer.style.display = "none";
 
+        remarkText.textContent = "";
     }
 
 
-    /* =====================================================
-       BOUTON PRÉCÉDENT
-    ====================================================== */
+    /* LIENS */
+
+    const regulationLink =
+        document.getElementById("regulationLink");
+
+
+    if (question.fiche) {
+
+        regulationLink.href =
+            question.fiche;
+
+        regulationLink.target =
+            "_blank";
+
+        regulationLink.classList.remove("disabled");
+
+        regulationLink.textContent =
+            "Consulter la fiche principale →";
+
+    } else {
+
+        regulationLink.href =
+            "#";
+
+        regulationLink.classList.add("disabled");
+
+        regulationLink.textContent =
+            "Fiche indisponible";
+    }
+
+
+    /* REPONSES */
+
+    const answersContainer =
+        document.getElementById("answersContainer");
+
+    answersContainer.innerHTML = "";
+
+
+    /* BOUTON PRECEDENT */
 
     const previousButton =
-        document.getElementById(
-            "previousQuestionButton"
-        );
+        document.getElementById("previousQuestionButton");
+
 
     if (currentQuestionIndex === 0) {
 
@@ -1342,93 +1401,33 @@ function displayQuestion() {
     } else {
 
         previousButton.disabled = false;
-
     }
 
 
-    /* =====================================================
-       LIENS DES FICHES
-    ====================================================== */
-
-    const regulationLinks =
-        document.getElementById(
-            "regulationLinks"
-        );
-
-    regulationLinks.innerHTML = "";
-
-
-    if (question.fiches && question.fiches.length > 0) {
-
-        question.fiches.forEach(fiche => {
-
-            const link =
-                document.createElement("a");
-
-            link.href = fiche.url;
-
-            link.target = "_blank";
-
-            link.rel = "noopener noreferrer";
-
-            link.className =
-                "regulation-link";
-
-            link.textContent =
-                `${fiche.label} →`;
-
-            regulationLinks.appendChild(link);
-
-        });
-
-    }
-
-
-    /* =====================================================
-       RÉPONSES
-    ====================================================== */
-
-    const answersContainer =
-        document.getElementById(
-            "answersContainer"
-        );
-
-    answersContainer.innerHTML = "";
-
+    /* CREATION DES REPONSES */
 
     question.reponses.forEach(response => {
 
         const button =
             document.createElement("button");
 
-        button.type = "button";
 
         button.className =
-            "answer-button";
+            `answer-button answer-${response.class}`;
 
 
-        const label =
-            document.createElement("span");
-
-        label.textContent =
+        button.textContent =
             response.label;
 
 
-        const arrow =
-            document.createElement("span");
+        button.onclick = () => {
 
-        arrow.className =
-            "answer-arrow";
+            selectAnswer(response);
 
-        arrow.textContent =
-            "→";
+        };
 
 
-        button.appendChild(label);
-        button.appendChild(arrow);
-
-
-        /* Réponse précédemment sélectionnée */
+        /* RESTAURATION DE LA REPONSE */
 
         const savedAnswer =
             answers[currentQuestionIndex];
@@ -1442,26 +1441,17 @@ function displayQuestion() {
             button.classList.add(
                 "selected-answer"
             );
-
         }
-
-
-        button.addEventListener(
-            "click",
-            () => selectAnswer(response)
-        );
 
 
         answersContainer.appendChild(button);
 
     });
-
 }
 
 
-
 /* =========================================================
-   QUESTION PRÉCÉDENTE
+   QUESTION PRECEDENTE
 ========================================================= */
 
 function previousQuestion() {
@@ -1476,9 +1466,8 @@ function previousQuestion() {
 }
 
 
-
 /* =========================================================
-   SÉLECTION RÉPONSE
+   REPONSE
 ========================================================= */
 
 function selectAnswer(response) {
@@ -1489,19 +1478,12 @@ function selectAnswer(response) {
 
     answers[currentQuestionIndex] = {
 
-        questionId:
-            question.id,
+        question: question,
 
-        question:
-            question,
-
-        answer:
-            response
+        answer: response
 
     };
 
-
-    /* Question suivante */
 
     if (
         currentQuestionIndex <
@@ -1515,15 +1497,12 @@ function selectAnswer(response) {
     } else {
 
         showResults();
-
     }
-
 }
 
 
-
 /* =========================================================
-   STATISTIQUES
+   RESULTATS
 ========================================================= */
 
 function calculateStats() {
@@ -1532,25 +1511,32 @@ function calculateStats() {
 
         verifie: 0,
 
-        verification: 0,
-
         action: 0,
 
-        "non-concerne": 0
+        verification: 0,
 
+        "non-concerne": 0
     };
 
 
     answers.forEach(item => {
 
+        if (!item) {
+            return;
+        }
+
+        const status =
+            item.answer.status;
+
+
         if (
-            item &&
-            item.answer &&
-            stats[item.answer.status] !== undefined
+            Object.prototype.hasOwnProperty.call(
+                stats,
+                status
+            )
         ) {
 
-            stats[item.answer.status]++;
-
+            stats[status]++;
         }
 
     });
@@ -1560,80 +1546,387 @@ function calculateStats() {
 }
 
 
+function showResults() {
+
+    showScreen("resultsScreen");
+
+    displayResults();
+}
+
+
+function displayResults() {
+
+    const stats =
+        calculateStats();
+
+
+    /* STATISTIQUES */
+
+    const statsContainer =
+        document.getElementById("statsContainer");
+
+
+    statsContainer.innerHTML = `
+
+        <div class="stat-card stat-yes">
+            <span class="stat-value">${stats.verifie}</span>
+            <span class="stat-label">Oui</span>
+        </div>
+
+        <div class="stat-card stat-no">
+            <span class="stat-value">${stats.action}</span>
+            <span class="stat-label">Non</span>
+        </div>
+
+        <div class="stat-card stat-check">
+            <span class="stat-value">${stats.verification}</span>
+            <span class="stat-label">À vérifier</span>
+        </div>
+
+        <div class="stat-card stat-na">
+            <span class="stat-value">${stats["non-concerne"]}</span>
+            <span class="stat-label">Non concerné</span>
+        </div>
+
+    `;
+
+
+    /* GROUPES */
+
+    const groups = {};
+
+
+    answers.forEach(item => {
+
+        if (!item) {
+            return;
+        }
+
+        const domaine =
+            item.question.domaine;
+
+
+        if (!groups[domaine]) {
+
+            groups[domaine] = [];
+
+        }
+
+
+        groups[domaine].push(item);
+
+    });
+
+
+    const resultsContainer =
+        document.getElementById("resultsContainer");
+
+
+    resultsContainer.innerHTML = "";
+
+
+    Object.values(groups).forEach(group => {
+
+        const first =
+            group[0].question;
+
+
+        const domainBlock =
+            document.createElement("div");
+
+
+        domainBlock.className =
+            "result-domain";
+
+
+        domainBlock.innerHTML = `
+
+            <div class="result-domain-header">
+
+                <h2>
+                    ${escapeHTML(first.domaineLabel)}
+                </h2>
+
+                <span>
+                    ${group.length} point${group.length > 1 ? "s" : ""}
+                </span>
+
+            </div>
+
+        `;
+
+
+        group.forEach(item => {
+
+            const status =
+                item.answer.status;
+
+
+            const statusLabel =
+                getStatusLabel(status);
+
+
+            const itemBlock =
+                document.createElement("div");
+
+
+            itemBlock.className =
+                "result-item";
+
+
+            itemBlock.innerHTML = `
+
+                <div class="result-item-top">
+
+                    <div class="result-question-title">
+                        ${escapeHTML(item.question.titre)}
+                    </div>
+
+                    <span class="
+                        result-answer
+                        ${getStatusClass(status)}
+                    ">
+                        ${statusLabel}
+                    </span>
+
+                </div>
+
+                <p class="result-action">
+                    ${escapeHTML(item.question.action || "")}
+                </p>
+
+            `;
+
+
+            domainBlock.appendChild(itemBlock);
+
+        });
+
+
+        resultsContainer.appendChild(domainBlock);
+
+    });
+}
+
 
 /* =========================================================
-   LIBELLÉS STATUTS — INTERFACE
+   ACTIONS
+========================================================= */
+
+function showActions() {
+
+    showScreen("actionsScreen");
+
+    displayActions();
+}
+
+
+function displayActions() {
+
+    const container =
+        document.getElementById("actionsContainer");
+
+
+    container.innerHTML = "";
+
+
+    const actions =
+        answers.filter(item => {
+
+            if (!item) {
+                return false;
+            }
+
+            return (
+                item.answer.status === "action" ||
+                item.answer.status === "verification"
+            );
+
+        });
+
+
+    if (actions.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-actions">
+
+                <strong>
+                    Aucun point particulier à signaler.
+                </strong>
+
+                <p>
+                    Toutes les réponses enregistrées sont
+                    actuellement indiquées comme vérifiées
+                    ou non concernées.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    actions.forEach(item => {
+
+        const question =
+            item.question;
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "action-card";
+
+
+        let linksHTML = "";
+
+
+        if (question.fiche) {
+
+            linksHTML += `
+                <a
+                    href="${question.fiche}"
+                    target="_blank"
+                >
+                    Fiche principale →
+                </a>
+            `;
+        }
+
+
+        if (question.ficheSupplementaire) {
+
+            linksHTML += `
+                <br>
+
+                <a
+                    href="${question.ficheSupplementaire}"
+                    target="_blank"
+                >
+                    ${escapeHTML(
+                        question.ficheSupplementaireLabel ||
+                        "Fiche complémentaire"
+                    )} →
+                </a>
+            `;
+        }
+
+
+        card.innerHTML = `
+
+            <h3>
+                ${escapeHTML(question.titre)}
+            </h3>
+
+            <p>
+                ${escapeHTML(question.action || "")}
+            </p>
+
+            ${linksHTML}
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* =========================================================
+   STATUTS
 ========================================================= */
 
 function getStatusLabel(status) {
 
     const labels = {
 
-        verifie:
-            "✓ Vérifié",
+        verifie: "Oui",
 
-        verification:
-            "À vérifier",
+        verification: "À vérifier",
 
-        action:
-            "Action",
+        action: "Non",
 
-        "non-concerne":
-            "Non concerné"
+        "non-concerne": "Non concerné"
 
     };
+
 
     return labels[status] || "";
 }
 
-
-
-/* =========================================================
-   LIBELLÉS STATUTS — PDF
-   SANS EMOJIS
-========================================================= */
 
 function getPDFStatusLabel(status) {
 
     const labels = {
 
-        verifie:
-            "Vérifié",
+        verifie: "Oui",
 
-        verification:
-            "À vérifier",
+        verification: "À vérifier",
 
-        action:
-            "Action",
+        action: "Non",
 
-        "non-concerne":
-            "Non concerné"
+        "non-concerne": "Non concerné"
 
     };
+
 
     return labels[status] || "";
 }
 
 
+function getStatusClass(status) {
+
+    const classes = {
+
+        verifie: "status-yes",
+
+        action: "status-no",
+
+        verification: "status-check",
+
+        "non-concerne": "status-na"
+
+    };
+
+
+    return classes[status] || "";
+}
+
 
 /* =========================================================
-   NETTOYAGE DU TEXTE PDF
-   SUPPRESSION DES EMOJIS
+   NETTOYAGE PDF
 ========================================================= */
 
 function cleanPDFText(text) {
 
-    return String(text || "")
+    if (!text) {
+        return "";
+    }
+
+
+    return String(text)
+
+        /* Emojis */
 
         .replace(
             /[\u{1F300}-\u{1FAFF}]/gu,
             ""
         )
 
+        /* Symboles */
+
         .replace(
             /[\u{2600}-\u{27BF}]/gu,
             ""
         )
+
+        /* espaces multiples */
 
         .replace(
             /\s{2,}/g,
@@ -1644,335 +1937,926 @@ function cleanPDFText(text) {
 }
 
 
-
 /* =========================================================
-   RÉSULTATS
+   PDF
 ========================================================= */
 
-function showResults() {
+function generatePDF() {
+
+    const {
+        jsPDF
+    } = window.jspdf;
+
+
+    const doc =
+        new jsPDF({
+            unit: "mm",
+            format: "a4"
+        });
+
+
+    const operatorName =
+        document.getElementById(
+            "operatorName"
+        ).value.trim();
+
+
+    const farmName =
+        document.getElementById(
+            "farmName"
+        ).value.trim();
+
+
+    const today =
+        new Date();
+
+
+    const date =
+        today.toLocaleDateString(
+            "fr-FR"
+        );
+
+
+    const time =
+        today.toLocaleTimeString(
+            "fr-FR",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+
+    const pageWidth =
+        doc.internal.pageSize.getWidth();
+
+
+    const pageHeight =
+        doc.internal.pageSize.getHeight();
+
+
+    const margin =
+        18;
+
+
+    let y = 20;
+
+
+    /* =====================================================
+       OUTILS PDF
+    ====================================================== */
+
+    function setColor(hex) {
+
+        const rgb =
+            hex.match(/\w\w/g)
+                .map(value =>
+                    parseInt(value, 16)
+                );
+
+
+        doc.setTextColor(
+            rgb[0],
+            rgb[1],
+            rgb[2]
+        );
+    }
+
+
+    function setFill(hex) {
+
+        const rgb =
+            hex.match(/\w\w/g)
+                .map(value =>
+                    parseInt(value, 16)
+                );
+
+
+        doc.setFillColor(
+            rgb[0],
+            rgb[1],
+            rgb[2]
+        );
+    }
+
+
+    function setDraw(hex) {
+
+        const rgb =
+            hex.match(/\w\w/g)
+                .map(value =>
+                    parseInt(value, 16)
+                );
+
+
+        doc.setDrawColor(
+            rgb[0],
+            rgb[1],
+            rgb[2]
+        );
+    }
+
+
+    function addPageIfNeeded(height) {
+
+        if (
+            y + height >
+            pageHeight - 18
+        ) {
+
+            doc.addPage();
+
+            y = 20;
+
+            addPageHeader();
+        }
+    }
+
+
+    function addPageHeader() {
+
+        doc.setFont(
+            "helvetica",
+            "bold"
+        );
+
+        doc.setFontSize(8);
+
+        setColor("77777D");
+
+        doc.text(
+            "CONDITIONNALITÉ 31 · DIAGNOSTIC ENVIRONNEMENTAL",
+            margin,
+            11
+        );
+
+        setDraw("E5E5E7");
+
+        doc.setLineWidth(0.3);
+
+        doc.line(
+            margin,
+            14,
+            pageWidth - margin,
+            14
+        );
+    }
+
+
+    /* =====================================================
+       COUVERTURE
+    ====================================================== */
+
+    setFill("1D1D1F");
+
+    doc.rect(
+        0,
+        0,
+        pageWidth,
+        62,
+        "F"
+    );
+
+
+    setColor("FFFFFF");
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(10);
+
+    doc.text(
+        "CONDITIONNALITÉ 31",
+        margin,
+        22
+    );
+
+
+    doc.setFontSize(25);
+
+    doc.text(
+        "Diagnostic",
+        margin,
+        37
+    );
+
+    doc.text(
+        "environnemental",
+        margin,
+        48
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    doc.setFontSize(9);
+
+    setColor("C8C8CD");
+
+    doc.text(
+        "Haute-Garonne · PAC 2026",
+        pageWidth - margin,
+        22,
+        {
+            align: "right"
+        }
+    );
+
+
+    y = 78;
+
+
+    /* IDENTITE */
+
+    setColor("77777D");
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(8);
+
+    doc.text(
+        "IDENTIFICATION",
+        margin,
+        y
+    );
+
+
+    y += 8;
+
+
+    setColor("1D1D1F");
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(14);
+
+    doc.text(
+        operatorName || "Exploitant non renseigné",
+        margin,
+        y
+    );
+
+
+    y += 7;
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    doc.setFontSize(10);
+
+    setColor("66666B");
+
+    doc.text(
+        farmName || "Exploitation non renseignée",
+        margin,
+        y
+    );
+
+
+    y += 7;
+
+
+    doc.text(
+        `Diagnostic réalisé le ${date} à ${time}`,
+        margin,
+        y
+    );
+
+
+    y += 17;
+
+
+    /* BANDEAU */
+
+    setFill("F3F5F7");
+
+    doc.roundedRect(
+        margin,
+        y,
+        pageWidth - margin * 2,
+        22,
+        4,
+        4,
+        "F"
+    );
+
+
+    setColor("1D1D1F");
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(9);
+
+    doc.text(
+        "Objet du document",
+        margin + 7,
+        y + 8
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    doc.setFontSize(8);
+
+    setColor("66666B");
+
+    doc.text(
+        "Synthèse des réponses renseignées dans l'autodiagnostic.",
+        margin + 7,
+        y + 15
+    );
+
+
+    y += 35;
+
+
+    /* =====================================================
+       RESUME
+    ====================================================== */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(16);
+
+    setColor("1D1D1F");
+
+    doc.text(
+        "Synthèse",
+        margin,
+        y
+    );
+
+
+    y += 11;
+
 
     const stats =
         calculateStats();
 
 
-    document.getElementById("statVerified")
-        .textContent =
-        stats.verifie;
+    const statData = [
+
+        {
+            label: "Oui",
+            value: stats.verifie,
+            color: "198754"
+        },
+
+        {
+            label: "Non",
+            value: stats.action,
+            color: "D64545"
+        },
+
+        {
+            label: "À vérifier",
+            value: stats.verification,
+            color: "B77900"
+        },
+
+        {
+            label: "Non concerné",
+            value: stats["non-concerne"],
+            color: "727272"
+        }
+
+    ];
 
 
-    document.getElementById("statToCheck")
-        .textContent =
-        stats.verification;
+    const cardGap = 4;
+
+    const cardWidth =
+        (
+            pageWidth -
+            margin * 2 -
+            cardGap * 3
+        ) / 4;
 
 
-    document.getElementById("statAction")
-        .textContent =
-        stats.action;
+    statData.forEach((stat, index) => {
+
+        const x =
+            margin +
+            index * (cardWidth + cardGap);
 
 
-    document.getElementById("statNotConcerned")
-        .textContent =
-        stats["non-concerne"];
+        setFill("F8F8F9");
 
-
-    displayResults();
-
-    showScreen("results");
-}
-
-
-
-/* =========================================================
-   AFFICHER RÉSULTATS
-========================================================= */
-
-function displayResults() {
-
-    const container =
-        document.getElementById(
-            "resultsContainer"
+        doc.roundedRect(
+            x,
+            y,
+            cardWidth,
+            25,
+            3,
+            3,
+            "F"
         );
 
-    container.innerHTML = "";
+
+        setFill(stat.color);
+
+        doc.roundedRect(
+            x,
+            y,
+            2,
+            25,
+            1,
+            1,
+            "F"
+        );
 
 
-    const domains = {};
+        setColor("1D1D1F");
+
+        doc.setFont(
+            "helvetica",
+            "bold"
+        );
+
+        doc.setFontSize(17);
+
+        doc.text(
+            String(stat.value),
+            x + 7,
+            y + 11
+        );
+
+
+        setColor("77777D");
+
+        doc.setFont(
+            "helvetica",
+            "normal"
+        );
+
+        doc.setFontSize(7);
+
+        doc.text(
+            stat.label,
+            x + 7,
+            y + 19
+        );
+
+    });
+
+
+    y += 38;
+
+
+    /* =====================================================
+       DETAILS
+    ====================================================== */
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(16);
+
+    setColor("1D1D1F");
+
+    doc.text(
+        "Détail des réponses",
+        margin,
+        y
+    );
+
+
+    y += 10;
+
+
+    const groups = {};
 
 
     answers.forEach(item => {
 
-        if (!item) return;
+        if (!item) {
+            return;
+        }
 
 
-        const domain =
+        const domaine =
             item.question.domaine;
 
 
-        if (!domains[domain]) {
+        if (!groups[domaine]) {
 
-            domains[domain] = {
-
-                label:
-                    item.question.domaineLabel,
-
-                icon:
-                    item.question.domaineIcon,
-
-                items: []
-
-            };
+            groups[domaine] = [];
 
         }
 
 
-        domains[domain].items.push(item);
+        groups[domaine].push(item);
 
     });
 
 
-    Object.values(domains).forEach(domain => {
+    Object.values(groups).forEach(group => {
 
-        const domainCard =
-            document.createElement("div");
-
-        domainCard.className =
-            "result-domain";
+        const first =
+            group[0].question;
 
 
-        const header =
-            document.createElement("div");
-
-        header.className =
-            "result-domain-header";
-
-        header.textContent =
-            `${domain.icon} ${domain.label}`;
+        addPageIfNeeded(35);
 
 
-        domainCard.appendChild(header);
+        /* HEADER DOMAINE */
+
+        setFill("F1F2F4");
+
+        doc.roundedRect(
+            margin,
+            y,
+            pageWidth - margin * 2,
+            11,
+            3,
+            3,
+            "F"
+        );
 
 
-        domain.items.forEach(item => {
+        setColor("1D1D1F");
 
-            const resultItem =
-                document.createElement("div");
+        doc.setFont(
+            "helvetica",
+            "bold"
+        );
 
-            resultItem.className =
-                "result-item";
-
-
-            const content =
-                document.createElement("div");
+        doc.setFontSize(9);
 
 
-            const title =
-                document.createElement("h4");
-
-            title.textContent =
-                item.question.titre;
-
-
-            const answer =
-                document.createElement("p");
-
-            answer.textContent =
-                item.answer.label;
+        doc.text(
+            cleanPDFText(first.domaineLabel),
+            margin + 5,
+            y + 7
+        );
 
 
-            content.appendChild(title);
-            content.appendChild(answer);
+        y += 16;
 
 
-            const badge =
-                document.createElement("span");
+        group.forEach(item => {
 
-            badge.className =
-                "status-badge";
-
-
-            if (
-                item.answer.status === "verifie"
-            ) {
-
-                badge.classList.add(
-                    "status-verified"
-                );
-
-            } else if (
-                item.answer.status === "verification"
-            ) {
-
-                badge.classList.add(
-                    "status-check"
-                );
-
-            } else if (
-                item.answer.status === "action"
-            ) {
-
-                badge.classList.add(
-                    "status-action"
-                );
-
-            } else {
-
-                badge.classList.add(
-                    "status-not-concerned"
-                );
-
-            }
+            const question =
+                item.question;
 
 
-            badge.textContent =
-                getStatusLabel(
-                    item.answer.status
+            const status =
+                item.answer.status;
+
+
+            const statusLabel =
+                getPDFStatusLabel(status);
+
+
+            const colorMap = {
+
+                verifie: "198754",
+
+                action: "D64545",
+
+                verification: "B77900",
+
+                "non-concerne": "727272"
+
+            };
+
+
+            const statusColor =
+                colorMap[status] ||
+                "727272";
+
+
+            const titleLines =
+                doc.splitTextToSize(
+                    cleanPDFText(
+                        question.titre
+                    ),
+                    112
                 );
 
 
-            resultItem.appendChild(content);
-            resultItem.appendChild(badge);
+            const actionLines =
+                doc.splitTextToSize(
+                    cleanPDFText(
+                        question.action || ""
+                    ),
+                    112
+                );
 
 
-            domainCard.appendChild(resultItem);
+            const boxHeight =
+                15 +
+                titleLines.length * 4 +
+                actionLines.length * 3.5;
+
+
+            addPageIfNeeded(
+                boxHeight + 4
+            );
+
+
+            setFill("FFFFFF");
+
+            setDraw("E5E5E7");
+
+            doc.setLineWidth(0.3);
+
+            doc.roundedRect(
+                margin,
+                y,
+                pageWidth - margin * 2,
+                boxHeight,
+                3,
+                3,
+                "FD"
+            );
+
+
+            /* LIGNE STATUT */
+
+            setFill(statusColor);
+
+            doc.roundedRect(
+                margin,
+                y,
+                2.5,
+                boxHeight,
+                1,
+                1,
+                "F"
+            );
+
+
+            /* TITRE */
+
+            setColor("1D1D1F");
+
+            doc.setFont(
+                "helvetica",
+                "bold"
+            );
+
+            doc.setFontSize(8.5);
+
+
+            doc.text(
+                titleLines,
+                margin + 7,
+                y + 8
+            );
+
+
+            /* STATUT */
+
+            setFill(statusColor);
+
+            doc.roundedRect(
+                pageWidth - margin - 32,
+                y + 5,
+                27,
+                8,
+                2,
+                2,
+                "F"
+            );
+
+
+            setColor("FFFFFF");
+
+            doc.setFont(
+                "helvetica",
+                "bold"
+            );
+
+            doc.setFontSize(6.5);
+
+
+            doc.text(
+                statusLabel,
+                pageWidth - margin - 18.5,
+                y + 10,
+                {
+                    align: "center"
+                }
+            );
+
+
+            /* ACTION */
+
+            const actionY =
+                y +
+                9 +
+                titleLines.length * 4;
+
+
+            setColor("77777D");
+
+            doc.setFont(
+                "helvetica",
+                "normal"
+            );
+
+            doc.setFontSize(7);
+
+
+            doc.text(
+                actionLines,
+                margin + 7,
+                actionY
+            );
+
+
+            y += boxHeight + 5;
 
         });
 
 
-        container.appendChild(domainCard);
+        y += 5;
 
     });
 
-}
+
+    /* =====================================================
+       DERNIERE PAGE : INFORMATIONS
+    ====================================================== */
+
+    addPageIfNeeded(70);
 
 
+    y += 8;
 
-/* =========================================================
-   ACTIONS
-========================================================= */
 
-function showActions() {
+    setFill("F3F5F7");
 
-    const container =
-        document.getElementById(
-            "actionsContainer"
+    doc.roundedRect(
+        margin,
+        y,
+        pageWidth - margin * 2,
+        42,
+        4,
+        4,
+        "F"
+    );
+
+
+    setColor("1D1D1F");
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    doc.setFontSize(9);
+
+
+    doc.text(
+        "À propos de ce document",
+        margin + 8,
+        y + 10
+    );
+
+
+    setColor("66666B");
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    doc.setFontSize(7.5);
+
+
+    const warning =
+        "Cet outil aide à identifier les points qui méritent une vérification. " +
+        "Il ne constitue pas une attestation de conformité réglementaire.";
+
+
+    const warningLines =
+        doc.splitTextToSize(
+            warning,
+            pageWidth - margin * 2 - 16
         );
 
-    container.innerHTML = "";
+
+    doc.text(
+        warningLines,
+        margin + 8,
+        y + 18
+    );
 
 
-    const actionItems =
-        answers.filter(
-            item =>
-                item &&
-                (
-                    item.answer.status === "action" ||
-                    item.answer.status === "verification"
-                )
+    const privacy =
+        "Les réponses sont traitées localement dans le navigateur et ne sont pas enregistrées sur ce site.";
+
+
+    const privacyLines =
+        doc.splitTextToSize(
+            privacy,
+            pageWidth - margin * 2 - 16
         );
 
 
-    if (actionItems.length === 0) {
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "action-card";
+    doc.text(
+        privacyLines,
+        margin + 8,
+        y + 31
+    );
 
 
-        card.innerHTML = `
-            <h3>
-                Aucun point d'attention identifié
-            </h3>
+    /* =====================================================
+       PIED DE PAGE SUR TOUTES LES PAGES
+    ====================================================== */
 
-            <p>
-                D'après vos réponses, aucun point n'a été
-                identifié comme nécessitant une action ou
-                une vérification complémentaire.
-            </p>
-        `;
+    const pageCount =
+        doc.internal.getNumberOfPages();
 
 
-        container.appendChild(card);
+    for (
+        let page = 1;
+        page <= pageCount;
+        page++
+    ) {
 
-    } else {
-
-        actionItems.forEach(item => {
-
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "action-card";
+        doc.setPage(page);
 
 
-            const title =
-                document.createElement("h3");
+        setColor("99999F");
 
-            title.textContent =
-                item.question.titre;
+        doc.setFont(
+            "helvetica",
+            "normal"
+        );
 
-
-            const description =
-                document.createElement("p");
-
-            description.textContent =
-                item.question.action ||
-                "Vérifiez ce point avant le contrôle.";
+        doc.setFontSize(6.5);
 
 
-            card.appendChild(title);
-            card.appendChild(description);
+        doc.text(
+            "Conditionnalité 31 · Diagnostic environnemental · 2026",
+            margin,
+            pageHeight - 9
+        );
 
 
-            /* Liens */
-
-            if (
-                item.question.fiches &&
-                item.question.fiches.length > 0
-            ) {
-
-                item.question.fiches.forEach(
-                    fiche => {
-
-                        const link =
-                            document.createElement("a");
-
-                        link.href =
-                            fiche.url;
-
-                        link.target =
-                            "_blank";
-
-                        link.rel =
-                            "noopener noreferrer";
-
-                        link.textContent =
-                            `${fiche.label} →`;
-
-
-                        card.appendChild(link);
-
-                    }
-                );
-
+        doc.text(
+            `${page} / ${pageCount}`,
+            pageWidth - margin,
+            pageHeight - 9,
+            {
+                align: "right"
             }
-
-
-            container.appendChild(card);
-
-        });
+        );
 
     }
 
 
-    showScreen("actions");
+    /* =====================================================
+       NOM DU FICHIER
+    ====================================================== */
+
+    const safeName =
+        (
+            operatorName ||
+            "exploitant"
+        )
+            .replace(
+                /[^a-zA-Z0-9À-ÿ_-]/g,
+                "_"
+            );
+
+
+    doc.save(
+        `Diagnostic_Conditionnalite_31_${safeName}_${date.replaceAll("/", "-")}.pdf`
+    );
 }
 
 
-
 /* =========================================================
-   ESCAPE HTML
+   SECURITE HTML
 ========================================================= */
 
 function escapeHTML(value) {
@@ -2003,715 +2887,4 @@ function escapeHTML(value) {
             /'/g,
             "&#039;"
         );
-
-}
-
-
-
-/* =========================================================
-   PDF
-========================================================= */
-
-function generatePDF() {
-
-    const {
-        jsPDF
-    } = window.jspdf;
-
-
-    const operatorName =
-        document.getElementById(
-            "operatorName"
-        ).value.trim();
-
-
-    const farmName =
-        document.getElementById(
-            "farmName"
-        ).value.trim();
-
-
-    const pdf =
-        new jsPDF({
-            unit: "mm",
-            format: "a4"
-        });
-
-
-    const pageWidth =
-        pdf.internal.pageSize.getWidth();
-
-
-    const pageHeight =
-        pdf.internal.pageSize.getHeight();
-
-
-    const margin = 18;
-
-    let y = 20;
-
-
-    /* =====================================================
-       OUTILS PDF
-    ====================================================== */
-
-    function checkPageSpace(heightNeeded = 15) {
-
-        if (
-            y + heightNeeded >
-            pageHeight - 20
-        ) {
-
-            pdf.addPage();
-
-            y = 20;
-
-        }
-
-    }
-
-
-    function addText(
-        text,
-        x,
-        yPosition,
-        options = {}
-    ) {
-
-        const size =
-            options.size || 10;
-
-        const font =
-            options.font || "normal";
-
-        const maxWidth =
-            options.maxWidth ||
-            pageWidth - margin * 2;
-
-
-        pdf.setFont(
-            "helvetica",
-            font
-        );
-
-        pdf.setFontSize(size);
-
-
-        const cleanText =
-            cleanPDFText(text);
-
-
-        const lines =
-            pdf.splitTextToSize(
-                cleanText,
-                maxWidth
-            );
-
-
-        pdf.text(
-            lines,
-            x,
-            yPosition
-        );
-
-
-        return lines.length *
-            (size * 0.45);
-
-    }
-
-
-
-    /* =====================================================
-       TITRE
-    ====================================================== */
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(22);
-
-    pdf.text(
-        "CONDITIONNALITE 31",
-        margin,
-        y
-    );
-
-    y += 9;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(11);
-
-    pdf.text(
-        "Diagnostic environnemental · 2026",
-        margin,
-        y
-    );
-
-    y += 15;
-
-
-    /* =====================================================
-       IDENTITÉ
-    ====================================================== */
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(12);
-
-    pdf.text(
-        "Identification",
-        margin,
-        y
-    );
-
-    y += 7;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(10);
-
-
-    pdf.text(
-        `Exploitant : ${cleanPDFText(
-            operatorName || "Non renseigné"
-        )}`,
-        margin,
-        y
-    );
-
-    y += 6;
-
-
-    pdf.text(
-        `Exploitation : ${cleanPDFText(
-            farmName || "Non renseignée"
-        )}`,
-        margin,
-        y
-    );
-
-    y += 6;
-
-
-    pdf.text(
-        `Date : ${new Date().toLocaleDateString(
-            "fr-FR"
-        )}`,
-        margin,
-        y
-    );
-
-    y += 13;
-
-
-
-    /* =====================================================
-       RÉSUMÉ
-    ====================================================== */
-
-    const stats =
-        calculateStats();
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(12);
-
-    pdf.text(
-        "Résumé",
-        margin,
-        y
-    );
-
-    y += 7;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(10);
-
-
-    const summaryText =
-        `Vérifiés : ${stats.verifie}   |   ` +
-        `À vérifier : ${stats.verification}   |   ` +
-        `Actions : ${stats.action}   |   ` +
-        `Non concernés : ${stats["non-concerne"]}`;
-
-
-    pdf.text(
-        summaryText,
-        margin,
-        y
-    );
-
-    y += 13;
-
-
-
-    /* =====================================================
-       RÉSULTATS PAR DIRECTIVE
-    ====================================================== */
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(12);
-
-    pdf.text(
-        "Détail du diagnostic",
-        margin,
-        y
-    );
-
-    y += 9;
-
-
-    const domains = {};
-
-
-    answers.forEach(item => {
-
-        if (!item) return;
-
-
-        const domain =
-            item.question.domaine;
-
-
-        if (!domains[domain]) {
-
-            domains[domain] = {
-
-                label:
-                    item.question.domaineLabel,
-
-                items: []
-
-            };
-
-        }
-
-
-        domains[domain].items.push(item);
-
-    });
-
-
-    Object.values(domains).forEach(
-        domain => {
-
-            checkPageSpace(18);
-
-
-            pdf.setFont(
-                "helvetica",
-                "bold"
-            );
-
-            pdf.setFontSize(11);
-
-
-            pdf.text(
-                cleanPDFText(
-                    domain.label
-                ),
-                margin,
-                y
-            );
-
-            y += 7;
-
-
-            domain.items.forEach(
-                item => {
-
-                    checkPageSpace(25);
-
-
-                    pdf.setFont(
-                        "helvetica",
-                        "bold"
-                    );
-
-                    pdf.setFontSize(9);
-
-
-                    const titleLines =
-                        pdf.splitTextToSize(
-                            cleanPDFText(
-                                item.question.titre
-                            ),
-                            115
-                        );
-
-
-                    pdf.text(
-                        titleLines,
-                        margin,
-                        y
-                    );
-
-
-                    pdf.setFont(
-                        "helvetica",
-                        "normal"
-                    );
-
-                    pdf.setFontSize(8);
-
-
-                    const status =
-                        getPDFStatusLabel(
-                            item.answer.status
-                        );
-
-
-                    pdf.text(
-                        status,
-                        pageWidth - margin - 30,
-                        y
-                    );
-
-
-                    y +=
-                        titleLines.length * 4;
-
-
-                    const answerLines =
-                        pdf.splitTextToSize(
-                            cleanPDFText(
-                                `Réponse : ${item.answer.label}`
-                            ),
-                            pageWidth - margin * 2
-                        );
-
-
-                    pdf.text(
-                        answerLines,
-                        margin,
-                        y
-                    );
-
-
-                    y +=
-                        answerLines.length * 4;
-
-
-                    y += 4;
-
-                }
-            );
-
-
-            y += 3;
-
-        }
-    );
-
-
-
-    /* =====================================================
-       ACTIONS
-    ====================================================== */
-
-    const actionItems =
-        answers.filter(
-            item =>
-                item &&
-                (
-                    item.answer.status === "action" ||
-                    item.answer.status === "verification"
-                )
-        );
-
-
-    checkPageSpace(25);
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(12);
-
-    pdf.text(
-        "Points à vérifier",
-        margin,
-        y
-    );
-
-    y += 8;
-
-
-    if (actionItems.length === 0) {
-
-        pdf.setFont(
-            "helvetica",
-            "normal"
-        );
-
-        pdf.setFontSize(9);
-
-        pdf.text(
-            "Aucun point d'action ou de vérification supplémentaire identifié.",
-            margin,
-            y
-        );
-
-        y += 8;
-
-    } else {
-
-        actionItems.forEach(
-            item => {
-
-                checkPageSpace(20);
-
-
-                pdf.setFont(
-                    "helvetica",
-                    "bold"
-                );
-
-                pdf.setFontSize(9);
-
-
-                pdf.text(
-                    cleanPDFText(
-                        item.question.titre
-                    ),
-                    margin,
-                    y
-                );
-
-
-                y += 5;
-
-
-                pdf.setFont(
-                    "helvetica",
-                    "normal"
-                );
-
-                pdf.setFontSize(8);
-
-
-                const actionText =
-                    item.question.action ||
-                    "Vérifier ce point.";
-
-
-                const actionLines =
-                    pdf.splitTextToSize(
-                        cleanPDFText(
-                            actionText
-                        ),
-                        pageWidth - margin * 2
-                    );
-
-
-                pdf.text(
-                    actionLines,
-                    margin,
-                    y
-                );
-
-
-                y +=
-                    actionLines.length * 4;
-
-
-                y += 4;
-
-            }
-        );
-
-    }
-
-
-
-    /* =====================================================
-       AVERTISSEMENT
-    ====================================================== */
-
-    checkPageSpace(35);
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(10);
-
-    pdf.text(
-        "Important",
-        margin,
-        y
-    );
-
-    y += 6;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(8);
-
-
-    const warning =
-        "Cet outil aide à identifier les points qui méritent une vérification. Il ne constitue pas une attestation de conformité réglementaire.";
-
-
-    const warningLines =
-        pdf.splitTextToSize(
-            cleanPDFText(warning),
-            pageWidth - margin * 2
-        );
-
-
-    pdf.text(
-        warningLines,
-        margin,
-        y
-    );
-
-
-    y +=
-        warningLines.length * 4 + 8;
-
-
-
-    /* =====================================================
-       CONFIDENTIALITÉ
-    ====================================================== */
-
-    pdf.setFontSize(8);
-
-    pdf.setTextColor(
-        100,
-        100,
-        100
-    );
-
-
-    const privacy =
-        "Diagnostic généré localement dans votre navigateur. Aucune donnée n'est enregistrée sur ce site.";
-
-
-    const privacyLines =
-        pdf.splitTextToSize(
-            cleanPDFText(privacy),
-            pageWidth - margin * 2
-        );
-
-
-    pdf.text(
-        privacyLines,
-        margin,
-        y
-    );
-
-
-
-    /* =====================================================
-       FOOTER
-    ====================================================== */
-
-    const totalPages =
-        pdf.internal.getNumberOfPages();
-
-
-    for (
-        let page = 1;
-        page <= totalPages;
-        page++
-    ) {
-
-        pdf.setPage(page);
-
-
-        pdf.setFont(
-            "helvetica",
-            "normal"
-        );
-
-        pdf.setFontSize(7);
-
-        pdf.setTextColor(
-            130,
-            130,
-            130
-        );
-
-
-        pdf.text(
-            `Conditionnalité 31 · 2026 · Page ${page}/${totalPages}`,
-            margin,
-            pageHeight - 10
-        );
-
-    }
-
-
-
-    /* =====================================================
-       NOM DU FICHIER
-    ====================================================== */
-
-    const cleanName =
-        (
-            operatorName ||
-            "exploitant"
-        )
-
-        .normalize("NFD")
-
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-
-        .replace(
-            /[^a-zA-Z0-9-_]/g,
-            "_"
-        );
-
-
-    const date =
-        new Date()
-            .toISOString()
-            .slice(0, 10);
-
-
-    pdf.save(
-        `Diagnostic_Conditionnalite_31_${cleanName}_${date}.pdf`
-    );
-
 }

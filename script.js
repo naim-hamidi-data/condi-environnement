@@ -865,7 +865,8 @@ const questions = [
             "Respectez-vous les règles relatives à la couverture des sols, notamment les dates d’implantation, la durée de maintien et les dates de destruction des couverts autorisés ?",
 
         remarque:
-            "Consultez la fiche dédiée à la couverture des sols pour connaître les couverts autorisés et les règles applicables à leur implantation et à leur destruction.",
+            "Consultez la fiche dédiée à la couverture des sols pour connaître les couverts autorisés et les règles applicables à leur implantation et à leur destruction.
+             Campagne 2026 :    "Au vu des événements climatiques exceptionnels survenus cet été et qui se prolongent au mois de septembre, une dérogation est accordée. Les exploitations qui mettent en œuvre cette dérogation doivent se déclarer auprès de la DDT, soit via l’application « Mes Démarches » (https://demarche.numerique.gouv.fr/commencer/ddt31-secheresse-2026), soit par courriel à l’adresse pac-surface@haute-garonne.gouv.fr.",
 
         reponses: [
             {

@@ -865,7 +865,7 @@ const questions = [
             "Respectez-vous les règles relatives à la couverture des sols, notamment les dates d’implantation, la durée de maintien et les dates de destruction des couverts autorisés ?",
 
         remarque:
-    "Consultez la fiche dédiée à la couverture des sols pour connaître les couverts autorisés et les règles applicables à leur implantation et à leur destruction.\n\nCampagne 2026 : Au vu des événements climatiques exceptionnels (sécheresse) survenus cet été et qui se prolongent au mois de septembre, une dérogation est accordée. Les exploitations qui mettent en œuvre cette dérogation doivent renseigner sur le CEP les parcelles concernées.",
+    "Consultez la fiche dédiée à la couverture des sols pour connaître les couverts autorisés et les règles applicables à leur implantation et à leur destruction.\n\n Campagne 2026 : Au vu des événements climatiques exceptionnels (sécheresse) survenus cet été et qui se prolongent au mois de septembre, une dérogation est accordée. Les exploitations qui mettent en œuvre cette dérogation doivent renseigner sur le CEP les parcelles concernées.",
         
        reponses: [
             {
